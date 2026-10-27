@@ -87,6 +87,11 @@ a{color:inherit}
 .chip small{font:500 10.5px/1 var(--f-mono);color:var(--ink-soft)}
 .chip:hover{border-color:var(--food)}
 .chip.go{border-style:dashed;color:var(--ink-soft)}
+.slogan{margin:0 auto;font:900 clamp(15px,1.7vw,21px)/1.15 var(--f-display);letter-spacing:-.01em;color:var(--ink);white-space:nowrap;min-width:0}
+.slogan span{color:var(--ku)}
+.slogan b{color:var(--ku);font-weight:900;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--ku) 22%,transparent) 62%)}
+@media (max-width:1100px){.status{margin-left:0}}
+@media (max-width:860px){.slogan{order:5;flex-basis:100%;text-align:center;font-size:15px}}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
 .brand svg{width:30px;height:30px;flex:none;color:var(--ku)}
 .brand strong{font:900 18px/1.1 var(--f-display);letter-spacing:-.01em;display:block}
@@ -152,6 +157,29 @@ pre{background:color-mix(in srgb,var(--ink) 6%,transparent);border:1px solid var
 .chart{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px max(16px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
   background:var(--panel);border-top:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .35s}
 .chart.away{transform:translateY(110%)}
+/* ---------- 작전 버튼 ---------- */
+.ops{position:fixed;z-index:19;right:max(16px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.ops.away{opacity:0;pointer-events:none}
+.ops .ops-t{font:500 10.5px/1 var(--f-mono);letter-spacing:.14em;color:var(--ink-soft);padding:2px 2px 4px}
+.ops button{display:flex;align-items:center;gap:8px;font:700 13px/1 var(--f-body);border-radius:var(--r);padding:10px 12px;cursor:pointer;white-space:nowrap;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);text-align:left}
+.ops button i{width:9px;height:9px;flex:none}
+.ops button.sam i{background:var(--alert);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.ops button.jet i{background:var(--sea-ink);clip-path:polygon(50% 0,100% 70%,50% 55%,0 70%)}
+.ops button.home i{background:var(--ku);border-radius:50%}
+.ops button:hover{border-color:var(--ink-soft)}
+.ops button:active{transform:translateY(1px)}
+.ops button.sam{border-color:color-mix(in srgb,var(--alert) 55%,var(--line))}
+.ops .ops-toggle{display:none}
+.ops-sep{height:1px;background:var(--line);margin:2px 0}
+.ops button.drone i{background:var(--ku);clip-path:polygon(0 0,35% 0,35% 35%,65% 35%,65% 0,100% 0,100% 100%,65% 100%,65% 65%,35% 65%,35% 100%,0 100%)}
+.ops button.bomb i{background:var(--ink);border-radius:50%}
+.ops button.tf i{background:var(--brass);transform:rotate(45deg)}
+.ops button.tf[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);color:#1b1407}
+.ops select{font:500 12.5px/1.2 var(--f-body);padding:8px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper);color:var(--ink);max-width:170px}
+.ops .msg{font:500 11px/1.4 var(--f-mono);color:var(--ink-soft);min-height:15px;max-width:150px}
+@media (max-width:760px){.ops .ops-toggle{display:flex;flex:1 1 100%;justify-content:center;border-color:var(--ku);color:var(--ku)}.ops.closed>*:not(.ops-toggle){display:none!important}.ops.closed{left:auto;padding:4px}.ops{top:var(--ops-top,150px);left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));transform:none;flex-direction:row;flex-wrap:wrap;justify-content:center;padding:6px;gap:6px}.ops .ops-t,.ops .msg,.ops-sep{display:none}.ops button{padding:8px 6px;font-size:11.5px;gap:5px;min-width:0;flex:1 1 30%;justify-content:center}.ops select{flex:1 1 40%;max-width:none;font-size:11.5px;padding:7px}.ops button.tf,.ops button.bomb{flex:1 1 25%}}
 .route{position:relative;display:flex;justify-content:space-between;max-width:880px;margin:0 auto}
 .route::before,.route .fill{content:"";position:absolute;left:9px;right:9px;top:9px;height:0;border-top:2px dashed var(--line)}
 .route .fill{right:auto;border-top:2px solid var(--ku);width:0}
@@ -202,6 +230,7 @@ footer.foot{max-width:1040px;margin:48px auto 0;padding-top:18px;border-top:1px 
     </svg>
     <span><strong>앵커김군 선단</strong><small>ANCHOR FLEET · KONKUK</small></span>
   </a>
+  <p class="slogan" lang="ko"><span>건국,</span> 세계를 이끌 <b>녹색의 물결</b></p>
   <div class="status" aria-label="선단 상황">
     <span class="opt">모항 <b>화양동</b> 37.540°N 127.079°E</span>
     <span>KST <b id="clock">--:--:--</b></span>
@@ -213,6 +242,20 @@ footer.foot{max-width:1040px;margin:48px auto 0;padding-top:18px;border-top:1px 
 
 <main id="voyage"></main>
 
+<div class="ops closed" id="ops" role="group" aria-label="방공 작전">
+  <button type="button" class="ops-toggle" id="opsToggle" aria-expanded="false">방공 작전 ▾</button>
+  <div class="ops-t">방공 작전</div>
+  <button type="button" class="sam" data-op="sam"><i></i>천궁 미사일 발사</button>
+  <button type="button" class="jet" data-op="jet"><i></i>KF-21 공군 출격</button>
+  <button type="button" class="drone" data-op="drone"><i></i>드론 군단 출격</button>
+  <button type="button" class="home" data-op="home"><i></i>건국대학교 복귀</button>
+  <div class="ops-sep" aria-hidden="true"></div>
+  <button type="button" class="bomb" data-op="bomb"><i></i>거북선 포격</button>
+  <label class="ops-t" for="tfShip">변신할 배</label>
+  <select id="tfShip"></select>
+  <button type="button" class="tf" data-op="tf" id="tfBtn"><i></i>항공모함 변신</button>
+  <div class="msg" id="opsMsg" aria-live="polite"></div>
+</div>
 <nav class="chart" id="chart" aria-label="항해도">
   <div class="route" id="route"><div class="fill" id="routeFill"></div></div>
 </nav>
@@ -327,7 +370,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Korea → Black Sea</div>
       <h1>앵커김군 선단</h1>
       <p class="sub">건국대학교 앵커사업단 업무를 나르는 배들</p>
-      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하고, 구매 견적서를 살피는 배들입니다. 배는 이순신 함대의 판옥선과 거북선을 본떴고, 고물에는 서울 깃발을 달았습니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
+      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하고, 구매 견적서를 살피는 배들입니다. 배가 지나는 항로는 녹색의 물결로 칠했고, 하늘에는 스타링크 위성 열차가 지나갑니다. 배는 이순신 함대의 판옥선과 거북선을 본떴고, 고물에는 서울 깃발을 달았습니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
       <div class="stats">
         <div><b>${SAILING.length}척</b><span>취항</span></div>
         <div><b>${BUILDING.length}척</b><span>건조 중</span></div>
@@ -341,7 +384,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Voyage · 분쟁 해역 항로</div>
       <h2>항해 코스</h2>
       <p class="sub">전쟁과 분쟁, 냉전 구도가 걸린 바다를 지나는 항로</p>
-      <p class="long">서해와 동중국해를 내려가 믈라카 해협과 인도양을 건너고, 수에즈 운하와 보스포루스 해협을 지나 흑해에 닿습니다. 붉은 표지가 아래 해역입니다. 선단이 이 해역에 닿을 때마다 건국대에서 천궁이 솟고 KF-21이 이륙해 동시에 요격합니다.</p>
+      <p class="long">서해와 동중국해를 내려가 믈라카 해협과 인도양을 건너고, 수에즈 운하와 보스포루스 해협을 지나 흑해에 닿습니다. 붉은 표지가 아래 해역입니다. 항공모함으로 변신한 배는 다른 배보다 3배 빠르게 항로를 앞서 갑니다. 선단이 이 해역에 닿을 때마다 건국대에서 천궁이 솟고 KF-21이 이륙해 동시에 요격합니다.</p>
       <ol class="steps hot">${HOTSPOTS.map(h=>`<li><b>${esc(h.name)}</b> — ${esc(h.note)}</li>`).join('')}</ol>
       <p class="fine">해역 설명은 2026년 중반까지 알려진 사실 기준이며 현재 정세와 다를 수 있습니다.</p>
       <div class="actions">${nextLink(i)}</div>
@@ -476,9 +519,32 @@ function measure(){
   const n=STOPS.length-1;
   routeFill.style.width=`calc(${(progress/n)*100}% - ${18*(progress/n)}px)`;
   chart.classList.toggle('away', fleetSec.getBoundingClientRect().top < window.innerHeight*0.6);
+  document.getElementById('ops')?.classList.toggle('away', chart.classList.contains('away'));
 }
 window.addEventListener('scroll',measure,{passive:true});
 window.addEventListener('resize',measure);
+document.getElementById('ops').addEventListener('click',ev=>{const b=ev.target.closest('button[data-op]'); if(!b)return; const op=b.dataset.op, m=document.getElementById('opsMsg');
+  if(op==='home'){goTo(HOME_STOP); m.textContent='모항 건국대로 복귀합니다'; return}
+  if(op==='drone'){if(!window.anchorDrones){m.textContent='3D 화면을 쓸 수 없는 기기입니다';return}
+    const go=()=>{m.textContent=window.anchorDrones()?'드론 군단 출격 · 하늘에 KU 대형':'드론 군단이 이미 비행 중입니다'};
+    if(progress<1.6){goTo(HOME_STOP); m.textContent='건국대로 이동 중'; setTimeout(go,1800)} else go(); return}
+  if(op==='bomb'){if(!window.anchorVolley){m.textContent='3D 화면을 쓸 수 없는 기기입니다';return}
+    const fire=()=>{const n=window.anchorVolley(); m.textContent=n?`거북선 ${n}척 포격`:'포격할 거북선이 없습니다 (모두 변신 중)'};
+    if(progress<1.6){const ti=SAILING.findIndex(x=>x.rig==='geobuk'); goTo(stopOf(SAILING[ti<0?0:ti])); m.textContent='거북선으로 이동 중'; setTimeout(fire,1800)} else fire(); return}
+  if(op==='tf'){if(!window.anchorShip){m.textContent='3D 화면을 쓸 수 없는 기기입니다';return}
+    const i=+document.getElementById('tfShip').value, on=window.anchorShip(i); syncTf();
+    m.textContent=on?`${SAILING[i].name} → 대한민국 최고 항공모함 · 속도 3배`:`${SAILING[i].name} 원래 배로 복귀`; return}
+  if(window.anchorOps){window.anchorOps(op); m.textContent=op==='sam'?'천궁 발사 · 위협체 요격':'KF-21 이륙 · 위협체 요격'}
+  else m.textContent='3D 화면을 쓸 수 없는 기기입니다'});
+const opsEl=document.getElementById('ops'), opsT=document.getElementById('opsToggle');
+opsT.addEventListener('click',()=>{const c=opsEl.classList.toggle('closed'); opsT.setAttribute('aria-expanded',!c); opsT.textContent=c?'방공 작전 ▾':'방공 작전 접기 ▴'});
+function placeOps(){const b=document.querySelector('header.bar'); if(b)opsEl.style.setProperty('--ops-top',Math.round(b.getBoundingClientRect().bottom+8)+'px')}
+placeOps(); addEventListener('resize',placeOps); document.fonts?.ready.then(placeOps);
+const tfSel=document.getElementById('tfShip'), tfBtn=document.getElementById('tfBtn');
+tfSel.innerHTML=SAILING.map((x,i)=>`<option value="${i}">${x.hull} ${esc(x.name)} · ${esc(x.cls)}</option>`).join('');
+tfSel.value=String(Math.max(0,SAILING.findIndex(x=>x.rig==='geobuk')));
+function syncTf(){const i=+tfSel.value, on=!!(window.anchorShipOn&&window.anchorShipOn(i)); tfBtn.setAttribute('aria-pressed',on); tfBtn.lastChild.textContent=on?'원래 배로':'항공모함 변신'}
+tfSel.addEventListener('change',syncTf);
 function goTo(i){ secs[i]?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }
 
 /* ---------- auto tour ---------- */
@@ -866,7 +932,7 @@ measure();
     const tA=new THREE.Vector3(), tB=new THREE.Vector3(), up=new THREE.Vector3(0,1,0);
     const aim=(o,dir)=>{if(dir.lengthSq()>1e-8)o.quaternion.setFromUnitVectors(X1,tA.copy(dir).normalize())};
     K.fire=o=>{
-      const e=Object.assign({t:0,dur:6,sam:makeSAM(),jet:makeJet(),th:makeThreat(),boom:null,after:0,last:{s:o.S.clone(),j:o.R0.clone(),h:o.from.clone()}},o);
+      const md=o.mode||'both', e=Object.assign({t:0,dur:6,sam:md!=='jet'?makeSAM():null,jet:md!=='sam'?makeJet():null,th:makeThreat(),boom:null,after:0,last:{s:o.S.clone(),j:o.R0.clone(),h:o.from.clone()}},o);
       const d=e.S.distanceTo(e.P);
       e.s1=e.S.clone().addScaledVector(up,10+d*.3); e.s2=e.P.clone().addScaledVector(up,4+d*.12).lerp(e.S,.12);
       const rd=e.R1.clone().sub(e.R0).normalize(), toP=e.P.clone().sub(e.R1).setY(0).normalize();
@@ -874,10 +940,10 @@ measure();
       e.Pj=e.P.clone().add(e.side);
       e.j1=e.R1.clone().addScaledVector(rd,8+d*.12).addScaledVector(up,3+d*.04);
       e.j2=e.Pj.clone().addScaledVector(toP,-(8+d*.12)).addScaledVector(up,-1);
-      e.sam.position.copy(e.S); e.jet.position.copy(e.R0); aim(e.jet,rd); e.th.position.copy(e.from);
-      [e.sam,e.jet,e.th].forEach(m=>SC.add(m)); K.ev.push(e); e.onFire&&e.onFire(e); return e;
+      if(e.sam)e.sam.position.copy(e.S); if(e.jet){e.jet.position.copy(e.R0); aim(e.jet,rd)} e.th.position.copy(e.from);
+      [e.sam,e.jet,e.th].filter(Boolean).forEach(m=>SC.add(m)); K.ev.push(e); e.onFire&&e.onFire(e); return e;
     };
-    K.busy=()=>K.ev.length>0;
+    K.busy=()=>K.ev.length>0; K.puff=puff;
     K.update=(dt,t,S=1)=>{
       K.puffs.forEach(q=>{if(!q.m.visible)return; q.life-=dt; const k=Math.max(0,q.life/q.max); q.m.material.opacity=.55*k; q.m.scale.setScalar(q.s*S*(1+(1-k)*2.2)); if(q.life<=0)q.m.visible=false});
       for(let i=K.ev.length-1;i>=0;i--){const e=K.ev[i]; e.t+=dt;
@@ -885,20 +951,20 @@ measure();
         if(!e.boom){
           const u=Math.min(1,e.t/e.dur);
           // 천궁: 수직 발사 후 전환
-          bez(e.S,e.s1,e.s2,e.P,Math.pow(u,1.35),tB); aim(e.sam,tA.copy(tB).sub(e.last.s)); e.sam.position.copy(tB); e.last.s.copy(tB);
+          if(e.sam){bez(e.S,e.s1,e.s2,e.P,Math.pow(u,1.35),tB); aim(e.sam,tA.copy(tB).sub(e.last.s)); e.sam.position.copy(tB); e.last.s.copy(tB);
           e.sam.userData.flame.scale.set(1,.8+Math.random()*.5,1);
-          puff(tB.clone().addScaledVector(tA.normalize(),-3.2*S),.55,2.4);
+          puff(tB.clone().addScaledVector(tA.normalize(),-3.2*S),.55,2.4);}
           // KF-21: 활주 → 이륙 → 요격
-          if(u<.22){const ua=(u/.22)**2; tB.copy(e.R0).lerp(e.R1,ua)} else bez(e.R1,e.j1,e.j2,e.Pj,(u-.22)/.78,tB);
+          if(e.jet){if(u<.22){const ua=(u/.22)**2; tB.copy(e.R0).lerp(e.R1,ua)} else bez(e.R1,e.j1,e.j2,e.Pj,(u-.22)/.78,tB);
           aim(e.jet,tA.copy(tB).sub(e.last.j)); e.jet.position.copy(tB); e.last.j.copy(tB);
           e.jet.userData.ab.forEach(a=>a.scale.set(1,.7+Math.random()*.5,1));
-          if(u>.22)puff(tB.clone().addScaledVector(tA.normalize(),-5.4*S),.28,1.2);
+          if(u>.22)puff(tB.clone().addScaledVector(tA.normalize(),-5.4*S),.28,1.2);}
           // 위협체
           tB.copy(e.from).lerp(e.P,u); aim(e.th,tA.copy(tB).sub(e.last.h)); e.th.position.copy(tB); e.last.h.copy(tB);
           e.th.userData.lt.material.opacity=(Math.sin(t*18)>0)?1:.2;
           if(u>=1){
-            e.jv=tA.copy(e.jet.position).sub(e.j2).normalize().clone();
-            e.SC=SC; SC.remove(e.sam); SC.remove(e.th);
+            if(e.jet)e.jv=tA.copy(e.jet.position).sub(e.j2).normalize().clone();
+            e.SC=SC; if(e.sam)SC.remove(e.sam); SC.remove(e.th);
             const B=new THREE.Group(); B.position.copy(e.P); SC.add(B);
             const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),AB(0xFFF1B0,1)), shell=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),AB(0xFF7A2E,.85));
             const ring=new THREE.Mesh(new THREE.RingGeometry(.9,1.15,32),AB(0xFFD27A,.9)); ring.material.side=THREE.DoubleSide;
@@ -911,10 +977,10 @@ measure();
           e.boom.core.scale.setScalar(S*(1+bk*4)); e.boom.core.material.opacity=1-bk;
           e.boom.shell.scale.setScalar(S*(1.5+bk*7)); e.boom.shell.material.opacity=.85*(1-bk);
           e.boom.ring.scale.setScalar(S*(1+bk*11)); e.boom.ring.material.opacity=.9*(1-bk); e.boom.ring.lookAt(e.cam?e.cam.position:up);
-          e.jet.position.addScaledVector(e.jv,dt*(40+e.P.distanceTo(e.S)*.05)*Math.max(1,S*.6)); e.jv.y+=dt*.25; aim(e.jet,e.jv);
+          if(e.jet){e.jet.position.addScaledVector(e.jv,dt*(40+e.P.distanceTo(e.S)*.05)*Math.max(1,S*.6)); e.jv.y+=dt*.25; aim(e.jet,e.jv);
           if(a>.8&&a<2.6)puff(e.jet.position.clone().addScaledVector(e.jv,-5.4*S),.28,1);
-          if(a>2.6)e.jet.scale.setScalar(S*Math.max(0,1-(a-2.6)/.6));
-          if(a>3.2){SC.remove(e.jet); SC.remove(e.boom.B); K.ev.splice(i,1); e.onDone&&e.onDone(e)}
+          if(a>2.6)e.jet.scale.setScalar(S*Math.max(0,1-(a-2.6)/.6));}
+          if(a>3.2){if(e.jet)SC.remove(e.jet); SC.remove(e.boom.B); K.ev.splice(i,1); e.onDone&&e.onDone(e)}
         }
       }
     };
@@ -1096,15 +1162,16 @@ measure();
   const R0L=new THREE.Vector3(-13,3.1,0), R1L=new THREE.Vector3(17,3.1,0);
   const hKit=strikeKit(scene);
   let strikeStop=-1, strikeArmed=false;
-  function harborStrike(si){
-    if(reduce)return;
+  const WHO={both:'천궁 · KU KF-21',sam:'천궁 지대공 미사일',jet:'KU KF-21 공군'};
+  function harborStrike(si,mode='both',force=false){
+    if(reduce&&!force)return;
     const k=Math.min(KF.length-1,Math.max(0,si-2)), L0=KF[k].l, P=k===0?L0.clone().add(new THREE.Vector3(10,26,-24)):L0.clone().add(new THREE.Vector3(-2,14,-14));
     const S=new THREE.Vector3(); muzzle.getWorldPosition(S);
     const fromCV=si>=2+1+DEPOTS.length, dj=deckJets[0];
     const R0=fromCV?cv.localToWorld(new THREE.Vector3(-4,4.1,-3.2)):rw.localToWorld(R0L.clone()), R1=fromCV?cv.localToWorld(new THREE.Vector3(30,4.1,-3.2)):rw.localToWorld(R1L.clone());
-    if(fromCV)dj.visible=false; else parked.visible=false;
-    hKit.fire({S,R0,R1,P,from:P.clone().add(new THREE.Vector3(95,34,-80)),dur:6,cam:camera,
-      onBoom:e=>{const d=document.createElement('div'); d.className='tag hot'; d.innerHTML='<b>요격 성공</b><small>천궁 · KU KF-21</small>'; labelsEl.appendChild(d); const o=new THREE.Object3D(); o.position.copy(e.P); scene.add(o); e.tag={d,obj:o,offY:4}; tags.push(e.tag)},
+    if(mode!=='sam'){if(fromCV)dj.visible=false; else parked.visible=false}
+    hKit.fire({mode,S,R0,R1,P,from:P.clone().add(new THREE.Vector3(95,34,-80)),dur:6,cam:camera,
+      onBoom:e=>{const d=document.createElement('div'); d.className='tag hot'; d.innerHTML='<b>요격 성공</b><small>'+WHO[mode]+'</small>'; labelsEl.appendChild(d); const o=new THREE.Object3D(); o.position.copy(e.P); scene.add(o); e.tag={d,obj:o,offY:4}; tags.push(e.tag)},
       onDone:e=>{if(e.tag){e.tag.d.remove(); tags.splice(tags.indexOf(e.tag),1); scene.remove(e.tag.obj)} if(!hKit.busy()){parked.visible=true;dj.visible=true}}});
   }
 
@@ -1130,24 +1197,59 @@ measure();
       g.fillStyle='#4C5E55'; g.font='500 24px "Noto Sans KR", sans-serif'; g.fillText('No.'+(k+1)+' 독 · '+co.s,256,118); tx.needsUpdate=true};
     draw(); dockSigns.push(draw);
   });
+  /* ---- 항공모함 모형 (KU 항공모함 · 거북선 변신에 함께 씀) ---- */
+  const radars=[];
+  function makeCarrier(num){
+    const cv=new THREE.Group();
+    const cvs=new THREE.Shape(); [[-30,-5],[20,-5.6],[32,0],[20,5.6],[-30,5]].forEach(([x,z],i)=>i?cvs.lineTo(x,z):cvs.moveTo(x,z));
+    const cvg=new THREE.ExtrudeGeometry(cvs,{depth:6,bevelEnabled:false}); cvg.rotateX(-Math.PI/2);
+    const cvh=new THREE.Mesh(cvg,mat('#5E6970')); cvh.position.y=-3; cv.add(cvh);
+    const fd=new THREE.Mesh(new THREE.BoxGeometry(64,.6,15),mat('#3D4246')); fd.position.set(-1,3.2,0); cv.add(fd);
+    const ang=new THREE.Mesh(new THREE.BoxGeometry(34,.6,7),mat('#3D4246')); ang.position.set(-12,3.2,-7); ang.rotation.y=.16; cv.add(ang);
+    for(let k=0;k<10;k++){const ln=new THREE.Mesh(new THREE.BoxGeometry(2.4,.05,.3),mat('#F4F1E8')); ln.position.set(-28+k*6,3.53,0); cv.add(ln)}
+    const yl=new THREE.Mesh(new THREE.BoxGeometry(30,.05,.25),mat('#E3B23C')); yl.position.set(-12,3.53,-6); yl.rotation.y=.16; cv.add(yl);
+    const isle=new THREE.Mesh(new THREE.BoxGeometry(7,6,3.2),mat('#6E7A80')); isle.position.set(4,6.5,6.3); cv.add(isle);
+    const isle2=new THREE.Mesh(new THREE.BoxGeometry(4.6,2.6,2.8),mat('#6E7A80')); isle2.position.set(4.4,10.8,6.3); cv.add(isle2);
+    const cvMast=new THREE.Mesh(new THREE.CylinderGeometry(.15,.2,5,5),mat('#3B4A44')); cvMast.position.set(4.4,14.5,6.3); cv.add(cvMast);
+    const radar=new THREE.Mesh(new THREE.BoxGeometry(.3,1.2,3.4),mat('#C9CDD0')); radar.position.set(4.4,16.4,6.3); cv.add(radar); radars.push(radar);
+    const cvKU=kuBoard(11,5.7,{bg:'#3D4246'}); cvKU.rotation.x=-Math.PI/2; cvKU.position.set(-20,3.54,1.5); cv.add(cvKU);
+    const cvNo=document.createElement('canvas'); cvNo.width=256; cvNo.height=128; const cvT=new THREE.CanvasTexture(cvNo);
+    {const g=cvNo.getContext('2d'); g.fillStyle='#F4F1E8'; g.font='900 '+(num.length>3?60:92)+'px "IBM Plex Mono", monospace'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(num,128,68)}
+    for(const sd of[1,-1]){const n=new THREE.Mesh(new THREE.PlaneGeometry(5,2.5),new THREE.MeshBasicMaterial({map:cvT,transparent:true,side:THREE.DoubleSide})); n.position.set(18,1.4,sd*5.25); if(sd<0)n.rotation.y=Math.PI; cv.add(n)}
+    const jets=[[16,-3.2,0],[6,-3.5,.2],[-6,4.5,-2.5],[-14,4.2,-2.4],[-24,-1,0]].map(([x,z,r])=>{const j=makeJet(); j.position.set(x,4.1,z); j.rotation.y=r; j.userData.ab.forEach(a=>a.visible=false); cv.add(j); return j});
+    cv.userData.jets=jets; return cv;
+  }
   /* ---- KU 항공모함: KF-21 탑재 ---- */
-  const cv=new THREE.Group(); cv.position.set(112,0,-40); scene.add(cv);
-  const cvs=new THREE.Shape(); [[-30,-5],[20,-5.6],[32,0],[20,5.6],[-30,5]].forEach(([x,z],i)=>i?cvs.lineTo(x,z):cvs.moveTo(x,z));
-  const cvg=new THREE.ExtrudeGeometry(cvs,{depth:6,bevelEnabled:false}); cvg.rotateX(-Math.PI/2);
-  const cvh=new THREE.Mesh(cvg,mat('#5E6970')); cvh.position.y=-3; cv.add(cvh);
-  const fd=new THREE.Mesh(new THREE.BoxGeometry(64,.6,15),mat('#3D4246')); fd.position.set(-1,3.2,0); cv.add(fd);
-  const ang=new THREE.Mesh(new THREE.BoxGeometry(34,.6,7),mat('#3D4246')); ang.position.set(-12,3.2,-7); ang.rotation.y=.16; cv.add(ang);
-  for(let k=0;k<10;k++){const ln=new THREE.Mesh(new THREE.BoxGeometry(2.4,.05,.3),mat('#F4F1E8')); ln.position.set(-28+k*6,3.53,0); cv.add(ln)}
-  const yl=new THREE.Mesh(new THREE.BoxGeometry(30,.05,.25),mat('#E3B23C')); yl.position.set(-12,3.53,-6); yl.rotation.y=.16; cv.add(yl);
-  const isle=new THREE.Mesh(new THREE.BoxGeometry(7,6,3.2),mat('#6E7A80')); isle.position.set(4,6.5,6.3); cv.add(isle);
-  const isle2=new THREE.Mesh(new THREE.BoxGeometry(4.6,2.6,2.8),mat('#6E7A80')); isle2.position.set(4.4,10.8,6.3); cv.add(isle2);
-  const cvMast=new THREE.Mesh(new THREE.CylinderGeometry(.15,.2,5,5),mat('#3B4A44')); cvMast.position.set(4.4,14.5,6.3); cv.add(cvMast);
-  const radar=new THREE.Mesh(new THREE.BoxGeometry(.3,1.2,3.4),mat('#C9CDD0')); radar.position.set(4.4,16.4,6.3); cv.add(radar);
-  const cvKU=kuBoard(11,5.7,{bg:'#3D4246'}); cvKU.rotation.x=-Math.PI/2; cvKU.position.set(-20,3.54,1.5); cv.add(cvKU);
-  const cvNo=document.createElement('canvas'); cvNo.width=256; cvNo.height=128; const cvT=new THREE.CanvasTexture(cvNo);
-  {const g=cvNo.getContext('2d'); g.clearRect(0,0,256,128); g.fillStyle='#F4F1E8'; g.font='900 92px "IBM Plex Mono", monospace'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('01',128,68)}
-  const cvNum=new THREE.Mesh(new THREE.PlaneGeometry(5,2.5),new THREE.MeshBasicMaterial({map:cvT,transparent:true})); cvNum.position.set(18,1.4,5.25); cv.add(cvNum);
-  const deckJets=[[16,-3.2,0],[6,-3.5,.2],[-6,4.5,-2.5],[-14,4.2,-2.4],[-24,-1,0]].map(([x,z,r])=>{const j=makeJet(); j.position.set(x,4.1,z); j.rotation.y=r; j.userData.ab.forEach(a=>a.visible=false); cv.add(j); return j});
+  const cv=makeCarrier('01'); cv.position.set(112,0,-40); scene.add(cv);
+  const deckJets=cv.userData.jets;
+
+  /* ---- 녹색의 물결: 배가 지나는 항로 ---- */
+  function waveTex(){const c=document.createElement('canvas'); c.width=256; c.height=64; const g=c.getContext('2d');
+    g.clearRect(0,0,256,64); const gr=g.createLinearGradient(0,0,0,64); gr.addColorStop(0,'rgba(0,112,62,0)'); gr.addColorStop(.5,'rgba(0,150,80,.38)'); gr.addColorStop(1,'rgba(0,112,62,0)'); g.fillStyle=gr; g.fillRect(0,0,256,64);
+    for(let r=0;r<3;r++){g.beginPath(); g.lineWidth=r===1?5:3; g.strokeStyle=r===1?'rgba(120,230,160,.95)':'rgba(40,190,110,.75)';
+      for(let x=0;x<=256;x+=4){const y=16+r*16+Math.sin(x/256*Math.PI*4+r*1.3)*6; x?g.lineTo(x,y):g.moveTo(x,y)} g.stroke()}
+    const t=new THREE.CanvasTexture(c); t.wrapS=THREE.RepeatWrapping; return t}
+  const gwTex=waveTex(), gwX0=-8, gwX1=yardX-16, gwN=180, gwZ=-2.5, gwW=5.2;
+  const gwGeo=new THREE.PlaneGeometry(gwX1-gwX0,gwW*2,gwN,1); gwGeo.rotateX(-Math.PI/2); gwGeo.translate((gwX0+gwX1)/2,0,gwZ);
+  gwTex.repeat.x=(gwX1-gwX0)/16;
+  const gw=new THREE.Mesh(gwGeo,new THREE.MeshBasicMaterial({map:gwTex,transparent:true,depthWrite:false})); gw.renderOrder=2; scene.add(gw);
+  const gwPos=gwGeo.attributes.position;
+  function updateGreenWave(t){for(let i=0;i<gwPos.count;i++){gwPos.setY(i,wave(gwPos.getX(i),gwPos.getZ(i),t)+.35)} gwPos.needsUpdate=true; gwTex.offset.x=-t*.35}
+  /* ---- 스타링크 위성 열차 (형상화) ---- */
+  const satBodyG=new THREE.BoxGeometry(1.6,.22,.9), satPanG=new THREE.BoxGeometry(5.2,.06,1.5);
+  const satBodyM=mat('#D9DDE0',{metalness:.6,roughness:.3}), satPanM=mat('#1F2E52',{metalness:.5,roughness:.35,emissive:0x0a1430});
+  const sats=[]; const satTrain=new THREE.Group(); scene.add(satTrain);
+  for(let k=0;k<14;k++){const g=new THREE.Group(); const bd=new THREE.Mesh(satBodyG,satBodyM); g.add(bd); const pn=new THREE.Mesh(satPanG,satPanM); pn.position.x=3.3; g.add(pn);
+    g.scale.setScalar(1.6); satTrain.add(g); sats.push(g)}
+  const linkGeo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]);
+  const link=new THREE.Line(linkGeo,new THREE.LineBasicMaterial({color:0x3BE38A,transparent:true,opacity:0})); scene.add(link);
+  const satSpan=yardX+340;
+  function updateStarlink(t){
+    const s0=((t*7)%satSpan)-170;
+    sats.forEach((g,k)=>{g.position.set(s0-k*7.5,78+Math.sin(k*.6)*.6,-95+k*1.2); g.rotation.set(.3,.2,Math.sin(t*.5+k)*.05)});
+    const lead=sats[4].position, pl=link.geometry.attributes.position; pl.setXYZ(0,lead.x,lead.y,lead.z); pl.setXYZ(1,cv.position.x+4.4,cv.position.y+17,cv.position.z+6.3); pl.needsUpdate=true;
+    link.material.opacity=(lead.x>-40&&lead.x<yardX+60)?.35+.35*Math.max(0,Math.sin(t*2.2)):0;
+  }
 
   /* ---- clouds, gulls, stars ---- */
   const clouds=[]; const cloudMat=new THREE.MeshStandardMaterial({color:0xffffff,flatShading:true,roughness:1,transparent:true,opacity:.92});
@@ -1212,11 +1314,11 @@ measure();
   const RT=[[127.08,37.54],[126.62,37.62],[126.1,37.1],[125.4,35.8],[124.6,33.6],[122.8,30.4],[121,27.2],[119.8,25.2],[118.4,23.4],[116.2,21],[113.2,16.5],[110.2,11.5],[106.4,6.5],[104.3,1.4],[102.4,2],[100.6,3.2],[98.3,5.8],[94.5,6.3],[88,5.8],[81.5,5.3],[76,8.6],[70,13.5],[63,19.5],[59.6,23.2],[57.2,25.4],[56.3,26.5],[55,26.6],[56.6,25.6],[58.3,22.7],[55,17.5],[50,13.4],[45.5,12.2],[43.3,12.7],[41.5,15.5],[39.2,19.5],[36.8,23.5],[34.3,27.5],[32.7,29.6],[32.4,30.7],[32.3,31.6],[30.5,33.2],[27.6,35.4],[25.9,37.6],[25.9,39.6],[26.5,40.3],[28,40.75],[29.05,41.2],[31,42.6],[33,43.8]];
   const curve=new THREE.CatmullRomCurve3(RT.map(([a,b])=>proj(a,b,1.1)),false,'centripetal');
   const cLen=curve.getLength(), NDASH=Math.floor(cLen/4.2);
-  const dashes=new THREE.InstancedMesh(new THREE.BoxGeometry(2.5,.35,.7),new THREE.MeshBasicMaterial({color:0xB8912F}),NDASH);
+  const dashes=new THREE.InstancedMesh(new THREE.BoxGeometry(2.5,.35,.7),new THREE.MeshBasicMaterial({color:0x1FA463}),NDASH);
   const dm=new THREE.Object3D();
   for(let i=0;i<NDASH;i++){const u=i/NDASH,p=curve.getPointAt(u),tg=curve.getTangentAt(u);dm.position.copy(p);dm.rotation.set(0,Math.atan2(-tg.z,tg.x),0);dm.updateMatrix();dashes.setMatrixAt(i,dm.matrix)}
   mS.add(dashes);
-  const NBIG=Math.floor(cLen/26), dashesW=new THREE.InstancedMesh(new THREE.BoxGeometry(15,1,4.2),new THREE.MeshBasicMaterial({color:0xB8912F}),NBIG);
+  const NBIG=Math.floor(cLen/26), dashesW=new THREE.InstancedMesh(new THREE.BoxGeometry(15,1,4.2),new THREE.MeshBasicMaterial({color:0x1FA463}),NBIG);
   for(let i=0;i<NBIG;i++){const u=i/NBIG,p=curve.getPointAt(u),tg=curve.getTangentAt(u);dm.position.copy(p);dm.rotation.set(0,Math.atan2(-tg.z,tg.x),0);dm.updateMatrix();dashesW.setMatrixAt(i,dm.matrix)}
   mS.add(dashesW); dashesW.visible=false;
   // 분쟁 해역 표지: 붉은 부표 + 퍼지는 고리
@@ -1238,12 +1340,12 @@ measure();
   const mKit=strikeKit(mS,{puffN:220});
   const hotU=HOTSPOTS.map(h=>{const p=proj(h.lon,h.lat); let best=0,bd=1e9; for(let i=0;i<=600;i++){const q=curve.getPointAt(i/600); const dd=(q.x-p.x)**2+(q.z-p.z)**2; if(dd<bd){bd=dd;best=i/600}} return best});
   let prevLead=-1; const MDUR=7, MLEAD=.0075*.99*MDUR;
-  function mapStrike(k){
-    if(reduce)return;
+  function mapStrike(k,mode='both',force=false){
+    if(reduce&&!force)return;
     const h=HOTSPOTS[k], P=proj(h.lon,h.lat,34), tg=curve.getTangentAt(hotU[k]);
     const off=new THREE.Vector3(tg.z,0,-tg.x).multiplyScalar(-260); off.y=90;
-    mKit.fire({S:home.clone().setY(3),R0:home.clone().add(new THREE.Vector3(-6,1.8,5)),R1:home.clone().add(new THREE.Vector3(6,1.8,5)),P,from:P.clone().add(off),dur:MDUR,cam:mCam,
-      onBoom:e=>{e.tag=mTag(e.P.clone().setY(60),`<b>요격 성공 · ${esc(h.name)}</b><small>천궁 · KU KF-21</small>`,'hot',null,'a')},
+    mKit.fire({mode,S:home.clone().setY(3),R0:home.clone().add(new THREE.Vector3(-6,1.8,5)),R1:home.clone().add(new THREE.Vector3(6,1.8,5)),P,from:P.clone().add(off),dur:MDUR,cam:mCam,
+      onBoom:e=>{e.tag=mTag(e.P.clone().setY(60),`<b>요격 성공 · ${esc(h.name)}</b><small>${WHO[mode]}</small>`,'hot',null,'a')},
       onDone:e=>{if(e.tag){e.tag.d.remove(); mtags.splice(mtags.indexOf(e.tag),1)}}});
   }
   // 지명
@@ -1268,6 +1370,27 @@ measure();
   const wc=proj(77,28.5);
   const MK=[{p:new THREE.Vector3(18,200,182),l:new THREE.Vector3(44,0,-6)},{p:new THREE.Vector3(wc.x,1180,wc.z+980),l:wc.clone()},{p:new THREE.Vector3(home.x-4,30,home.z+30),l:new THREE.Vector3(home.x+1,0,home.z)}];
   const mP=new THREE.Vector3(), mL=new THREE.Vector3(), tmp=new THREE.Vector3();
+  // 녹색의 물결 항로 리본 + 스타링크 궤도
+  const mgTex=waveTex();
+  function ribbon(w){const N=700, pos=[], uv=[], idx=[];
+    for(let i=0;i<=N;i++){const u=i/N, p=curve.getPointAt(u), tg=curve.getTangentAt(u); const nx=-tg.z, nz=tg.x, l=Math.hypot(nx,nz)||1;
+      pos.push(p.x+nx/l*w,1.25,p.z+nz/l*w, p.x-nx/l*w,1.25,p.z-nz/l*w); uv.push(u*cLen/(w*6),0,u*cLen/(w*6),1);
+      if(i<N){const a=i*2; idx.push(a,a+1,a+2,a+1,a+3,a+2)}}
+    const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3)); g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2)); g.setIndex(idx);
+    const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:mgTex,transparent:true,depthWrite:false,side:THREE.DoubleSide})); m.renderOrder=2; mS.add(m); return m}
+  const gRib=ribbon(3.2), gRibW=ribbon(16); gRibW.visible=false;
+  const orbits=[], orbSats=[];
+  [[0,.35],[1.2,.5],[2.3,.42]].forEach(([ry,tilt],k)=>{const R=950+k*70, pts=[]; for(let i=0;i<=128;i++){const a=i/128*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*R,0,Math.sin(a)*R))}
+    const o=new THREE.Group(); o.position.set(wc.x,260,wc.z); o.rotation.set(tilt,ry,0); mS.add(o);
+    o.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x8FD8B0,transparent:true,opacity:.35,fog:false})));
+    const n=26, sp=new THREE.BufferGeometry(); sp.setAttribute('position',new THREE.Float32BufferAttribute(new Float32Array(n*3),3));
+    const P=new THREE.Points(sp,new THREE.PointsMaterial({color:0xFFFFFF,size:4,sizeAttenuation:false,fog:false})); o.add(P); orbits.push({o,P,R,n,ph:k*1.7,sp:.05+k*.012})});
+  const nearTrain=new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(new Float32Array(16*3),3)),new THREE.PointsMaterial({color:0xFFFFFF,size:3.5,sizeAttenuation:false,fog:false})); mS.add(nearTrain);
+  function updateMapSky(t,wideK){
+    orbits.forEach(ob=>{const a=ob.P.geometry.attributes.position; for(let i=0;i<ob.n;i++){const an=ob.ph+t*ob.sp+i*.035; a.setXYZ(i,Math.cos(an)*ob.R,0,Math.sin(an)*ob.R)} a.needsUpdate=true; ob.o.visible=wideK>.25});
+    const a=nearTrain.geometry.attributes.position; const s0=((t*9)%260)-130; for(let i=0;i<16;i++)a.setXYZ(i,home.x+s0-i*4.2,95,home.z-40+i*1.4); a.needsUpdate=true; nearTrain.visible=wideK<.5;
+    gRib.visible=wideK<.35; gRibW.visible=!gRib.visible; mgTex.offset.x=-t*.5;
+  }
   function renderMap(){
     const a=mSeaPos.array, ox=mSea.position.x; for(let i=0;i<a.length;i+=3){const x=mSeaBase[i]+ox,z=mSeaBase[i+2]; a[i+1]=.55*Math.sin(.05*x+t*.6)+.4*Math.sin(.07*z-t*.5)}
     mSeaPos.needsUpdate=true;
@@ -1276,7 +1399,7 @@ measure();
     const pr=Math.min(2,Math.max(0,progress)), wideK=pr<=1?ease(pr):1-ease(pr-1), SK=1+5*wideK;
     hotRings.forEach(h=>{h.rs.forEach((r,q)=>{const c=(t*.45+h.ph+q*.5)%1; r.scale.setScalar((1+c*2.2)*(1+2*wideK)); r.material.opacity=.8*(1-c)}); h.g.children[0].scale.setScalar(1+2.2*wideK)});
     const cyc=(t*.0075)%1, uLead=.004+cyc*.99, fade=Math.min(1,cyc/.02,(1-cyc)/.03);
-    fleetG.forEach((g,i)=>{const [back0,lat0]=FORM[i%FORM.length], back=back0*SK, lat=lat0*SK; const u=Math.max(0,uLead-back/cLen);
+    fleetG.forEach((g,i)=>{const [back0,lat0]=FORM[i%FORM.length], back=back0*SK, lat=lat0*SK; let u=Math.max(0,uLead-back/cLen); const fu=g.userData; if(fu.tf){fu.u3=(fu.u3==null?u:fu.u3)+frameDt*.0075*.99*3; if(fu.u3>.99)fu.u3=.004; u=fu.u3}
       const p=curve.getPointAt(u), tg=curve.getTangentAt(u); g.position.set(p.x-tg.z*lat,.5+Math.sin(t*1.4+i)*.25,p.z+tg.x*lat);
       g.rotation.y=Math.atan2(-tg.z,tg.x); g.children[0].rotation.z=Math.sin(t*1.1+i)*.04; g.scale.setScalar(FS*SK*fade);});
     if(prevLead>=0&&uLead>prevLead)hotU.forEach((u,k)=>{const tr=u-MLEAD; if(prevLead<tr&&uLead>=tr)mapStrike(k)});
@@ -1285,11 +1408,104 @@ measure();
     mP.copy(A.p).lerp(B.p,f); mL.copy(A.l).lerp(B.l,f);
     tmp.copy(mP).sub(mL).multiplyScalar(fa*(1-f)+fb*f); mP.copy(mL).add(tmp);
     const sway=pr<=1?1:1-f; mP.z+=Math.sin(t*.07)*10*sway*(1+5*wideK); mP.y+=Math.sin(t*.09)*4*sway*(1+5*wideK);
-    dashes.visible=wideK<.35; dashesW.visible=!dashes.visible; mS.fog.near=300+1500*wideK; mS.fog.far=1150+3000*wideK; mapWide=wideK;
+    dashes.visible=wideK<.35; dashesW.visible=!dashes.visible; updateMapSky(t,wideK); mS.fog.near=300+1500*wideK; mS.fog.far=1150+3000*wideK; mapWide=wideK;
     mCam.position.copy(mP); mCam.lookAt(mL); mR.render(mS,mCam);
     fleetTag.pos.copy(fleetG[0].position); fleetTag.pos.y+=22*SK;
   }
+  /* ---- 거북선 포격 · 거북선 변신(대한민국 최고 항공모함, 속도 3배) ---- */
+  const bombs=[], ballG=new THREE.SphereGeometry(.38,8,6), ballM=mat('#1C1C1C');
+  const CV_SCALE=.5, CRUISE={z:-24,x0:52,x1:195,v:6};
+  function turtleVolley(){
+    let n=0; const tW=new THREE.Vector3(), dW=new THREE.Vector3();
+    ships.forEach((g,i)=>{if(SAILING[i].rig!=='geobuk'||g.userData.tf)return; n++;
+      const body=g.children[0], L=g.userData.L; body.updateMatrixWorld(true);
+      const shots=[[new THREE.Vector3(L*.38+2.1,2.5,0),new THREE.Vector3(1,.15,0)]];
+      for(let k=0;k<6;k++){const sd=k%2?1:-1; shots.push([new THREE.Vector3(-L*.3+Math.floor(k/2)*L*.22,2.1,sd*2.9),new THREE.Vector3(0,.1,sd)])}
+      shots.forEach(([lp,ld],k)=>{
+        const src=body.localToWorld(lp.clone()), dir=ld.clone().transformDirection(body.matrixWorld); dir.y=0; dir.normalize();
+        const tgt=src.clone().addScaledVector(dir,16+Math.random()*10); tgt.x+=(Math.random()-.5)*4; tgt.y=.3;
+        bombs.push({src,tgt,t:-k*.18-i*.1,dur:1.25+Math.random()*.3,h:4+Math.random()*3,m:null});
+      });
+    });
+    return n;
+  }
+  function updateBombs(dt){
+    for(let i=bombs.length-1;i>=0;i--){const b=bombs[i]; const was=b.t; b.t+=dt;
+      if(b.t<0)continue;
+      if(was<0||!b.m){b.m=new THREE.Mesh(ballG,ballM); scene.add(b.m);
+        for(let k=0;k<5;k++)hKit.puff(b.src.clone().add(new THREE.Vector3(Math.random()-.5,Math.random()*.6,Math.random()-.5)),.7,1.6,0xD9D4C6);
+        const fl=new THREE.Mesh(new THREE.IcosahedronGeometry(.9,0),AB(0xFFB347,1)); fl.position.copy(b.src); scene.add(fl); b.fl=fl}
+      const u=Math.min(1,b.t/b.dur);
+      if(b.fl){b.fl.scale.setScalar(1+u*4); b.fl.material.opacity=Math.max(0,1-u*4); if(u>.25){scene.remove(b.fl); b.fl=null}}
+      if(!b.sp){b.m.position.copy(b.src).lerp(b.tgt,u); b.m.position.y+=4*b.h*u*(1-u);
+        if(u>=1){scene.remove(b.m); b.sp=new THREE.Group(); b.sp.position.copy(b.tgt); scene.add(b.sp);
+          const col=new THREE.Mesh(new THREE.ConeGeometry(1.2,5,8,1,true),new THREE.MeshBasicMaterial({color:0xF4F8F6,transparent:true,opacity:.9,depthWrite:false,side:THREE.DoubleSide})); col.position.y=2.5; b.sp.add(col);
+          const bl=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),AB(0xFF8A3D,.9)); bl.position.y=.8; b.sp.add(bl); b.col=col; b.bl=bl; b.st=b.t}}
+      else{const a=(b.t-b.st)/1.1; b.col.scale.set(1+a*.6,Math.min(1,a*3)*(1-a*.4),1+a*.6); b.col.material.opacity=.9*(1-a); b.bl.scale.setScalar(1+a*4); b.bl.material.opacity=.9*Math.max(0,1-a*2);
+        if(a>=1){scene.remove(b.sp); bombs.splice(i,1)}}
+    }
+  }
+  function shipTag(i){return tags.find(tg=>tg.obj===ships[i])}
+  function setTransform(i,on){
+    const s=SAILING[i];
+    [ships[i],fleetG[i]].forEach((g,gi)=>{const u=g.userData; if(!!u.tf===on)return;
+      if(on){if(!u.cvm){u.cvm=makeCarrier(s.hull.replace('KU-','')); u.cvm.scale.setScalar(.001); g.add(u.cvm)} u.cvm.visible=true}
+      u.tf=on; u.tfk=on?0:1; u.tfDir=on?1:-1;
+      if(gi===0){u.cx=shipPos[i].x; u.cdir=1; u.ry0=u.ry0??g.rotation.y}
+      else u.u3=null;
+      for(let k=0;k<18;k++)(gi===0?hKit:mKit).puff(g.position.clone().add(new THREE.Vector3((Math.random()-.5)*14,Math.random()*8,(Math.random()-.5)*8)),1.6,1.8,0xF4F1E8);
+    });
+    const tg=shipTag(i); if(tg)tg.d.innerHTML=on?`<i style="background:${s.color}"></i>${s.hull} <b>대한민국 최고 항공모함</b> · 속도 3배`:`<i style="background:${s.color}"></i>${s.hull} <b>${esc(s.name)}</b>`;
+  }
+  function updateTransforms(dt){
+    ships.forEach((g,i)=>{const u=g.userData; if(u.tfk==null)return;
+      u.tfk=Math.min(1,Math.max(0,u.tfk+u.tfDir*dt*1.4)); const k=ease(u.tfk);
+      g.children[0].scale.setScalar(Math.max(.001,1-k)); if(u.cvm){u.cvm.scale.setScalar(Math.max(.001,k*CV_SCALE)); if(u.tfk===0&&u.tfDir<0)u.cvm.visible=false}
+      const f=fleetG[i], fu=f.userData; fu.tfk=u.tfk; f.children[0].scale.setScalar(Math.max(.001,1-k)); if(fu.cvm){fu.cvm.scale.setScalar(Math.max(.001,k*CV_SCALE)); if(u.tfk===0)fu.cvm.visible=false}
+    });
+  }
+  window.anchorShip=i=>{const on=!ships[i].userData.tf; setTransform(i,on); return on};
+  window.anchorVolley=()=>turtleVolley();
+  window.anchorShipOn=i=>!!ships[i].userData.tf;
+  /* ---- 드론 군단: 건국대에서 이륙해 하늘에 KU를 그리고 복귀 ---- */
+  const KU_PIX=['10001 10001','10010 10001','10100 10001','11000 10001','10100 10001','10010 10001','10001 01110'];
+  const formPts=[]; KU_PIX.forEach((row,r)=>[...row].forEach((ch,c)=>{if(ch==='1')formPts.push([c-5,6-r])}));
+  const droneBodyG=new THREE.BoxGeometry(.7,.18,.7), armG=new THREE.BoxGeometry(1.5,.06,.1), rotG=new THREE.CylinderGeometry(.34,.34,.03,10);
+  const droneM=mat('#2A2F2C'), rotM=new THREE.MeshBasicMaterial({color:0x9FB0A8,transparent:true,opacity:.55});
+  function makeDrone(){const G=new THREE.Group(); G.add(new THREE.Mesh(droneBodyG,droneM));
+    for(const r of[Math.PI/4,-Math.PI/4]){const a=new THREE.Mesh(armG,droneM); a.rotation.y=r; G.add(a)}
+    const rots=[]; for(const [x,z] of[[.53,.53],[-.53,.53],[.53,-.53],[-.53,-.53]]){const q=new THREE.Mesh(rotG,rotM); q.position.set(x,.1,z); G.add(q); rots.push(q)}
+    const led=new THREE.Mesh(new THREE.SphereGeometry(.26,6,5),AB(0x3BE38A,1)); led.position.y=-.18; G.add(led);
+    G.scale.setScalar(1.7); G.userData={rots,led}; return G}
+  let swarm=null;
+  function droneSwarm(si){
+    if(swarm)return false;
+    const k=Math.min(KF.length-1,Math.max(0,si-2)), L0=KF[k].l, camDir=KF[k].p.clone().sub(L0).setY(0).normalize();
+    const right=new THREE.Vector3(camDir.z,0,-camDir.x), sp=k===0?3:1.9;
+    const C=L0.clone().add(new THREE.Vector3(0,k===0?16:0,0)).addScaledVector(camDir,k===0?0:-4).addScaledVector(right,k===0?0:-15);
+    const base=new THREE.Vector3(); port.getWorldPosition(base);
+    const ds=formPts.map(([fx,fy],i)=>{const d=makeDrone(); scene.add(d);
+      const st=base.clone().add(new THREE.Vector3(-6+(i%7)*2,3.6,4+Math.floor(i/7)*2));
+      const tg=C.clone().addScaledVector(right,fx*sp).add(new THREE.Vector3(0,fy*sp,0));
+      d.position.copy(st); return {d,st,tg,dl:i*.04}});
+    swarm={ds,t:0}; return true;
+  }
+  function updateSwarm(dt,t){
+    if(!swarm)return; swarm.t+=dt; const T=swarm.t, FLY=4.2, HOLD=5, BACK=4.2, end=FLY+HOLD+BACK+1.2;
+    swarm.ds.forEach((o,i)=>{const d=o.d, tt=T-o.dl; let p;
+      if(tt<FLY){const u=ease(Math.max(0,tt/FLY)); p=o.st.clone().lerp(o.tg,u); p.y+=Math.sin(u*Math.PI)*12}
+      else if(tt<FLY+HOLD){p=o.tg.clone(); p.y+=Math.sin(t*2+i)*.15; d.userData.led.material.opacity=(Math.sin(t*6+i*.5)>-.3)?1:.25}
+      else {const u=ease(Math.min(1,(tt-FLY-HOLD)/BACK)); p=o.tg.clone().lerp(o.st,u); p.y+=Math.sin(u*Math.PI)*12}
+      d.rotation.y=Math.sin(t*.8+i)*.3; d.position.copy(p); d.userData.rots.forEach(r=>r.rotation.y+=dt*40)});
+    if(T>end){swarm.ds.forEach(o=>scene.remove(o.d)); swarm=null}
+  }
+  window.anchorDrones=()=>droneSwarm(Math.round(progress));
   let mapFar=1, mapFarW=1, mapWide=0, frameDt=0;
+  /* 작전 버튼 */
+  window.anchorOps=mode=>{
+    if(progress<1.6){const ahead=hotU.findIndex(u=>u>prevLead+.01); mapStrike(ahead<0?0:ahead,mode,true)}
+    else harborStrike(Math.round(progress),mode,true);
+  };
 
   /* ---- theme ---- */
   let night=0;
@@ -1332,6 +1548,7 @@ measure();
   addTag(yard,24,`<i style="background:var(--brass)"></i>건조 중 <b>${BUILDING.map(b=>b.hull).join('·')||'—'}</b>`,STOPS.length-1);
   campusTag(lake,4,'<b>일감호</b>');
   campusTag(sc0,18,'<b>새천년관</b>');
+  campusTag(sats[4],5,'<b>스타링크 위성</b>');
   campusTag(cv,20,'<i style="background:#5E6970"></i>KU 항공모함 <b>KF-21 탑재</b>');
   const v3=new THREE.Vector3();
 
@@ -1368,7 +1585,13 @@ measure();
     for(let i=0;i<a.length;i+=3){a[i+1]=wave(seaBase[i]+ox,seaBase[i+2],t)}
     seaPos.needsUpdate=true;
     // ships bob on the wave
-    ships.forEach((g,i)=>{const p=shipPos[i],L=g.userData.L; const h=wave(p.x,p.z,t);
+    ships.forEach((g,i)=>{const u=g.userData, p0=shipPos[i], kk=Math.min(1,dt*1.5);
+      if(u.tf){u.cx+=u.cdir*CRUISE.v*3*dt; if(u.cx>CRUISE.x1){u.cx=CRUISE.x1;u.cdir=-1} if(u.cx<CRUISE.x0){u.cx=CRUISE.x0;u.cdir=1}
+        g.position.x+=(u.cx-g.position.x)*Math.min(1,dt*3); g.position.z+=(CRUISE.z-g.position.z)*Math.min(1,dt*1.2);
+        g.rotation.y+=((u.cdir>0?0:Math.PI)-g.rotation.y)*Math.min(1,dt*2);
+        if(Math.random()<dt*24)hKit.puff(g.position.clone().add(new THREE.Vector3(-u.cdir*15,.4,(Math.random()-.5)*7)),.9,1.3);
+      } else if(u.ry0!=null){g.position.x+=(p0.x-g.position.x)*kk; g.position.z+=(p0.z-g.position.z)*kk; g.rotation.y+=(u.ry0-g.rotation.y)*kk}
+      const p=g.position,L=u.L; const h=wave(p.x,p.z,t);
       g.position.y=h*.8+.2; const hf=wave(p.x+L*.4,p.z,t), hb=wave(p.x-L*.4,p.z,t), hl=wave(p.x,p.z+2,t), hr=wave(p.x,p.z-2,t);
       g.children[0].rotation.z=(hf-hb)/L*.9; g.children[0].rotation.x=(hl-hr)*.06;});
     buoys.forEach((b,i)=>{b.position.y=wave(b.position.x,b.position.z,t)+.4;b.rotation.z=Math.sin(t*1.3+i)*.12});
@@ -1379,7 +1602,7 @@ measure();
     { const ns=Math.round(progress); if(ns>=2&&Math.abs(progress-ns)<.06&&ns!==strikeStop){strikeStop=ns; if(hKit.ev.length<2)harborStrike(ns)} if(ns<2)strikeStop=-1; }
     hKit.update(dt,t,1);
     boats.forEach(b=>{const u=b.userData; b.position.x=u.x+Math.sin(t*.15+u.ph)*1.6; b.position.y=1.25+Math.sin(t*1.2+u.ph)*.05; b.rotation.y=Math.cos(t*.15+u.ph)>0?0:Math.PI});
-    cv.position.y=wave(cv.position.x,cv.position.z,t)*.3; radar.rotation.y=t*1.4;
+    cv.position.y=wave(cv.position.x,cv.position.z,t)*.3; radars.forEach(r=>r.rotation.y=t*1.4); updateBombs(dt); updateTransforms(dt); updateGreenWave(t); updateStarlink(t); updateSwarm(dt,t);
     jib.rotation.y=Math.sin(t*.25)*.7;
     beamPivot.rotation.y=t*.9;
     clouds.forEach(c=>{c.position.x+=dt*1.2; if(c.position.x>yardX+200)c.position.x=-180});
