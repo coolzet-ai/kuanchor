@@ -9,7 +9,7 @@
 <body>
 <title>앵커김군 선단</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="건국대학교 앵커사업단 업무 도구 선단 — 공문김군, 회의김군, 출장김군">
+<meta name="description" content="건국대학교 앵커사업단 업무 도구 선단 — 공문김군, 회의김군, 출장김군, 검수김군">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap">
@@ -256,7 +256,12 @@ const FLEET = [
     mission:'출장보고서 작성·증빙 점검',
     desc:'첨부 자료와 메모, 현장 사진, 영수증만으로 출장보고서를 씁니다. 사전 승인, 사진 촬영일, 서명란을 함께 점검합니다.',
     cargo:['첨부 자료에 있는 내용만 서술','사전·국외출장 승인, 간이영수증 경고','사진·영수증 첨부지 한 쪽 3장 배치','PDF(A4)·Word 저장, 텍스트 복사'] },
-  { hull:'KU-04', name:'제4호선', product:'이름 미정', role:'건조 중', cls:'용골 거치', rig:'carrack', status:'building',
+  { hull:'KU-04', name:'검수김군', product:'KU 검수조서', role:'검수선', cls:'캐랙급', rig:'carrack', status:'sailing',
+    color:'#6A4C93', glyph:'檢', url:'https://coolzet-ai.github.io/kureview/',
+    mission:'물품 검수조서 작성·검수요강 점검',
+    desc:'발주서, 지출결의서, 거래명세서를 읽어 공급자·발주금액·품목을 채운 검수조서(서식22)를 쓰고, 건국대학교 검수요강(2025. 10. 1. 개정)에 맞는지 점검합니다.',
+    cargo:['검수조서(서식22)·검수거부사유서(별지 2호) 작성','검수요강·검산·빈칸·형식·개인정보 점검','AI 검수 의견은 제안으로만 표시','A4 인쇄용 HTML 저장'] },
+  { hull:'KU-05', name:'제5호선', product:'이름 미정', role:'건조 중', cls:'용골 거치', rig:'carrack', status:'building',
     color:'#B8912F', glyph:'?', url:'',
     mission:'다음 업무 도구',
     desc:'새 도구가 배포되면 이 자리에서 진수합니다.', cargo:[] },
@@ -316,7 +321,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Korea → Black Sea</div>
       <h1>앵커김군 선단</h1>
       <p class="sub">건국대학교 앵커사업단 업무를 나르는 배들</p>
-      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리는 배들입니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
+      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하는 배들입니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
       <div class="stats">
         <div><b>${SAILING.length}척</b><span>취항</span></div>
         <div><b>${BUILDING.length}척</b><span>건조 중</span></div>
@@ -394,7 +399,7 @@ STOPS.forEach((st,i)=>{
         <li>선단 목록(FLEET)에 배 한 척 추가</li>
         <li>페이지 다시 게시 → 새 정박지와 항해도가 자동으로 생김</li>
       </ol>
-<pre>{ hull:'KU-04', name:'○○김군',
+<pre>{ hull:'KU-05', name:'○○김군',
   rig:'caravel', status:'sailing',
   color:'#00703E', glyph:'○',
   url:'https://coolzet-ai.github.io/…' }</pre>
