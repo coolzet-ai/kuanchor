@@ -9,7 +9,7 @@
 <body>
 <title>앵커김군 선단</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="건국대학교 앵커사업단 업무 도구 선단 — 공문김군, 회의김군, 출장김군, 검수김군">
+<meta name="description" content="건국대학교 앵커사업단 업무 도구 선단 — 공문김군, 회의김군, 출장김군, 검수김군, 견적김군">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap">
@@ -238,30 +238,35 @@ footer.foot{max-width:1040px;margin:48px auto 0;padding-top:18px;border-top:1px 
 /* =====================================================================
    선단 데이터 — 새 배(도구)가 생기면 이 배열에 한 척 추가하면 됩니다.
    status: 'sailing'(취항) | 'building'(건조 중)
-   rig:    'galleon'(3돛대 기함) | 'carrack'(2~3돛대) | 'caravel'(삼각돛 쾌속선)
+   rig:    'daejang'(판옥선 대장선) | 'panok'(판옥선) | 'geobuk'(거북선) — 이순신 함대의 배
    ===================================================================== */
 const FLEET = [
-  { hull:'KU-01', name:'공문김군', product:'KU 문서다듬', role:'기함', cls:'갤리온급', rig:'galleon', status:'sailing',
+  { hull:'KU-01', name:'공문김군', product:'KU 문서다듬', role:'기함', cls:'판옥선 대장선', rig:'daejang', status:'sailing',
     color:'#00703E', glyph:'文', url:'https://coolzet-ai.github.io/kudocument',
     mission:'공문서 검토·다듬기',
     desc:'기안문을 건국대학교 문서규정, 행정업무운영 편람, 쉬운 공문서 쓰기 길잡이 세 기준으로 나란히 대조하고 고칠 곳을 제안 카드로 보여 줍니다.',
     cargo:['3단 기준 비교와 차이점 해설','주민번호·전화·계좌·학번 가려 보내기','제안 수락·거절 단축키(J/K, A/R)','문서 점수와 표 편집기'] },
-  { hull:'KU-02', name:'회의김군', product:'KU 회의록', role:'기록선', cls:'캐랙급', rig:'carrack', status:'sailing',
+  { hull:'KU-02', name:'회의김군', product:'KU 회의록', role:'기록선', cls:'거북선', rig:'geobuk', status:'sailing',
     color:'#B8912F', glyph:'會', url:'https://coolzet-ai.github.io/kumeet/',
     mission:'회의록 작성·회의비 점검',
     desc:'회의자료, 사진, 녹취록을 넣으면 [서식8] 회의록 초안을 쓰고, 영수증 금액과 날짜를 읽어 재원별 1인 한도를 점검합니다.',
     cargo:['참석 인원에 맞춘 분량(간결·표준·상세)','회의비 한도·영수증 일자 점검','결재 기한 7일·이전 회의록 유사도 선택 점검','PDF·Word·인쇄용 HTML 저장'] },
-  { hull:'KU-03', name:'출장김군', product:'KU 출장보고서', role:'쾌속선', cls:'캐러벨급', rig:'caravel', status:'sailing',
+  { hull:'KU-03', name:'출장김군', product:'KU 출장보고서', role:'쾌속선', cls:'판옥선', rig:'panok', status:'sailing',
     color:'#2F6E8F', glyph:'行', url:'https://coolzet-ai.github.io/kutrip/',
     mission:'출장보고서 작성·증빙 점검',
     desc:'첨부 자료와 메모, 현장 사진, 영수증만으로 출장보고서를 씁니다. 사전 승인, 사진 촬영일, 서명란을 함께 점검합니다.',
     cargo:['첨부 자료에 있는 내용만 서술','사전·국외출장 승인, 간이영수증 경고','사진·영수증 첨부지 한 쪽 3장 배치','PDF(A4)·Word 저장, 텍스트 복사'] },
-  { hull:'KU-04', name:'검수김군', product:'KU 검수조서', role:'검수선', cls:'캐랙급', rig:'carrack', status:'sailing',
+  { hull:'KU-04', name:'검수김군', product:'KU 검수조서', role:'검수선', cls:'거북선', rig:'geobuk', status:'sailing',
     color:'#6A4C93', glyph:'檢', url:'https://coolzet-ai.github.io/kureview/',
     mission:'물품 검수조서 작성·검수요강 점검',
     desc:'발주서, 지출결의서, 거래명세서를 읽어 공급자·발주금액·품목을 채운 검수조서(서식22)를 쓰고, 건국대학교 검수요강(2025. 10. 1. 개정)에 맞는지 점검합니다.',
     cargo:['검수조서(서식22)·검수거부사유서(별지 2호) 작성','검수요강·검산·빈칸·형식·개인정보 점검','AI 검수 의견은 제안으로만 표시','A4 인쇄용 HTML 저장'] },
-  { hull:'KU-05', name:'제5호선', product:'이름 미정', role:'건조 중', cls:'용골 거치', rig:'carrack', status:'building',
+  { hull:'KU-05', name:'견적김군', product:'KU 견적서 검토', role:'감찰선', cls:'판옥선', rig:'panok', status:'sailing',
+    color:'#9A3B5B', glyph:'見', url:'https://coolzet-ai.github.io/kuestimate/',
+    mission:'구매 견적서 검토·감사 점검',
+    desc:'업체 견적서와 비교견적서를 읽어 공급가액·부가세·합계·견적일 비교표를 만들고, 건국대학교 구매계약업무요강(2025. 10. 1. 개정)에 비추어 계약 방법과 단일견적 사유를 점검합니다.',
+    cargo:['견적서 이미지·PDF 판독과 업체별 비교표','계약 방법·단일견적 사유·일정·지급·부가세 환급 4대 점검','감사 체크리스트와 적발 사례 해설','보완 요청 메일 작성, 텍스트·JSON 저장'] },
+  { hull:'KU-06', name:'제6호선', product:'이름 미정', role:'건조 중', cls:'용골 거치', rig:'panok', status:'building',
     color:'#B8912F', glyph:'?', url:'',
     mission:'다음 업무 도구',
     desc:'새 도구가 배포되면 이 자리에서 진수합니다.', cargo:[] },
@@ -287,6 +292,7 @@ const HOTSPOTS = [
   { name:'바브엘만데브 · 홍해', en:'BAB-EL-MANDEB', lon:43.4, lat:12.6, note:'2023년 말부터 예멘 후티의 상선 공격이 이어진 길목' },
   { name:'흑해', en:'BLACK SEA', lon:33.6, lat:43.4, below:true, note:'2022년 러시아의 우크라이나 전면 침공으로 전장이 된 바다' }
 ];
+const BIG3UI=[{n:'HD현대중공업',s:'울산 · LNG선 · 이지스 구축함'},{n:'한화오션',s:'거제 옥포 · 잠수함 · LNG선'},{n:'삼성중공업',s:'거제 · LNG선 · FLNG'}];
 const SAILING = FLEET.filter(s=>s.status==='sailing');
 const BUILDING = FLEET.filter(s=>s.status==='building');
 const DEPOTS = FLEET.filter(s=>s.status==='depot');
@@ -321,7 +327,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Korea → Black Sea</div>
       <h1>앵커김군 선단</h1>
       <p class="sub">건국대학교 앵커사업단 업무를 나르는 배들</p>
-      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하는 배들입니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
+      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하고, 구매 견적서를 살피는 배들입니다. 배는 이순신 함대의 판옥선과 거북선을 본떴고, 고물에는 서울 깃발을 달았습니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
       <div class="stats">
         <div><b>${SAILING.length}척</b><span>취항</span></div>
         <div><b>${BUILDING.length}척</b><span>건조 중</span></div>
@@ -335,7 +341,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Voyage · 분쟁 해역 항로</div>
       <h2>항해 코스</h2>
       <p class="sub">전쟁과 분쟁, 냉전 구도가 걸린 바다를 지나는 항로</p>
-      <p class="long">서해와 동중국해를 내려가 믈라카 해협과 인도양을 건너고, 수에즈 운하와 보스포루스 해협을 지나 흑해에 닿습니다. 붉은 표지가 아래 해역입니다.</p>
+      <p class="long">서해와 동중국해를 내려가 믈라카 해협과 인도양을 건너고, 수에즈 운하와 보스포루스 해협을 지나 흑해에 닿습니다. 붉은 표지가 아래 해역입니다. 선단이 이 해역에 닿을 때마다 건국대에서 천궁이 솟고 KF-21이 이륙해 동시에 요격합니다.</p>
       <ol class="steps hot">${HOTSPOTS.map(h=>`<li><b>${esc(h.name)}</b> — ${esc(h.note)}</li>`).join('')}</ol>
       <p class="fine">해역 설명은 2026년 중반까지 알려진 사실 기준이며 현재 정세와 다를 수 있습니다.</p>
       <div class="actions">${nextLink(i)}</div>
@@ -346,7 +352,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Home port · 화양동</div>
       <h2>모항</h2>
       <p class="sub">선단이 정박한 건국대학교 앞바다</p>
-      <p class="long">선착장에는 보급소가, 본관 시계탑과 등대 앞바다에는 배들이 차례로 정박해 있습니다. 누르거나 아래로 넘기면 하나씩 가까이 봅니다.</p>
+      <p class="long">선착장에는 보급소가, 본관 시계탑과 등대 앞바다에는 배들이 차례로 정박해 있습니다. 보급소는 일감호에 떠 있고 그 뒤로 새천년관이 보이며, 먼바다에는 KF-21을 실은 KU 항공모함이 대기합니다. 섬에는 천궁 발사대와 KU KF-21 활주로가 있어, 기항지에 닿을 때마다 날아드는 위협을 천궁과 KF-21이 동시에 요격합니다. 누르거나 아래로 넘기면 하나씩 가까이 봅니다.</p>
       <div class="cargo-t">선착장 보급소</div>
       <ul class="cargo">${DEPOTS.map(s=>`<li><span><a href="#${STOPS[stopOf(s)].id}">${s.hull} ${esc(s.name)}</a> · ${esc(s.mission)}</span></li>`).join('')}</ul>
       <div class="cargo-t">정박한 배</div>
@@ -393,16 +399,22 @@ STOPS.forEach((st,i)=>{
       <h2>조선소</h2>
       <p class="sub">새 업무 도구가 생기면 여기서 진수합니다</p>
       <p class="long">선대 위에 ${BUILDING.map(b=>esc(b.hull)).join(', ')}의 용골이 올라가 있습니다. 도구가 배포되면 선단 목록에 한 줄을 더하고, 배는 바다로 나가 다음 정박지에 자리를 잡습니다.</p>
+      <div class="cargo-t">협력 독 · 국내 조선 빅3</div>
+      <ul class="cargo">${BIG3UI.map(c=>`<li><span><b>${esc(c.n)}</b> · ${esc(c.s)}</span></li>`).join('')}</ul>
       <div class="cargo-t">진수 절차</div>
       <ol class="steps">
         <li>도구를 GitHub Pages에 배포</li>
         <li>선단 목록(FLEET)에 배 한 척 추가</li>
         <li>페이지 다시 게시 → 새 정박지와 항해도가 자동으로 생김</li>
       </ol>
-<pre>{ hull:'KU-05', name:'○○김군',
-  rig:'caravel', status:'sailing',
-  color:'#00703E', glyph:'○',
-  url:'https://coolzet-ai.github.io/…' }</pre>
+      <div class="cargo-t">다음 배 명세</div>
+      <dl class="spec">
+        <dt>선체 번호</dt><dd>${esc(BUILDING[0]?BUILDING[0].hull:'KU-06')}</dd>
+        <dt>배 이름</dt><dd>○○김군 (도구 이름)</dd>
+        <dt>배 종류</dt><dd>판옥선 · 거북선 중 선택</dd>
+        <dt>상태</dt><dd><span class="pill build">진수 대기</span></dd>
+        <dt>항구</dt><dd>coolzet-ai.github.io/…</dd>
+      </dl>
       <div class="actions"><a class="btn" href="#fleet">선단 명부 ↓</a><a class="btn ghost" href="#p1">모항으로 ↑</a></div>
     </div>`;
   }
@@ -555,8 +567,22 @@ measure();
 
   /* ---- ship factory ---- */
   /* 돛: 건국대 이니셜 워드마크(공식 마크 원형 그대로, 헤리티지 그린) + 배별 한자 문장 */
+  const flags=[], lanterns=[];
   const KU_MARK=new Image(), MARK_RATIO=480/250; let markReady=false;
   const sails=[];
+  /* KU 이니셜 마크 판(보급소·조선소 깃발·현판) */
+  const kuBoards=[];
+  function drawKuBoard(o){const g=o.c.getContext('2d'),w=o.c.width,h=o.c.height; g.fillStyle=o.bg; g.fillRect(0,0,w,h);
+    if(o.border){g.strokeStyle=o.border; g.lineWidth=8; g.strokeRect(6,6,w-12,h-12)}
+    if(markReady){let mw=w*.78,mh=mw/MARK_RATIO; if(mh>h*.7){mh=h*.7;mw=mh*MARK_RATIO} g.drawImage(KU_MARK,(w-mw)/2,(h-mh)/2,mw,mh)}
+    o.t.needsUpdate=true}
+  function kuBoard(w,h,opt={}){const c=document.createElement('canvas'); c.width=256; c.height=Math.round(256*h/w);
+    const t=new THREE.CanvasTexture(c); if(THREE.sRGBEncoding)t.encoding=THREE.sRGBEncoding;
+    const o=Object.assign({c,t,bg:'#F4EFE2'},opt); kuBoards.push(o); drawKuBoard(o);
+    const geo=new THREE.PlaneGeometry(w,h,opt.flag?8:1,1); if(opt.flag)geo.translate(w/2,0,0);
+    const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:t,side:THREE.DoubleSide,roughness:1}));
+    if(opt.flag)flags.push({flag:m,base:geo.attributes.position.array.slice(),ph:Math.random()*6});
+    return m}
   function drawSail(o){
     const c=o.c, g=c.getContext('2d'), S=c.width;
     g.fillStyle='#F4EFE2'; g.fillRect(0,0,S,S);
@@ -585,7 +611,7 @@ measure();
     return [new THREE.MeshStandardMaterial(Object.assign({side:THREE.FrontSide,map:t1},plain)),new THREE.MeshStandardMaterial(Object.assign({side:THREE.BackSide,map:t2},plain))];
   }
   const meshes=(g,ms)=>{const G=new THREE.Group();ms.forEach(m=>G.add(new THREE.Mesh(g,m)));return G};
-  KU_MARK.onload=()=>{markReady=true;sails.forEach(drawSail)};
+  KU_MARK.onload=()=>{markReady=true;sails.forEach(drawSail);kuBoards.forEach(drawKuBoard);try{drawSign();depots.forEach(D=>D.userData.drawSign());drawNSign()}catch(e){}};
   KU_MARK.src='data:image/png;base64,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';
   function hullGeo(L,W,H,stripe){
     const s=new THREE.Shape();
@@ -622,47 +648,279 @@ measure();
     g.setAttribute('position',new THREE.Float32BufferAttribute(v,3)); g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2)); g.setIndex(idx); g.computeVertexNormals();
     return meshes(g,sailMats(spec&&Object.assign({pw:len,ph:h},spec)));
   }
-  const flags=[], lanterns=[];
+  /* 조선 수군 배: 이순신 함대의 판옥선(daejang 대장선 · panok)과 거북선(geobuk) */
+  const crew=[];
+  function joseonHull(L,W,H,stripe){
+    const s=new THREE.Shape();
+    s.moveTo(-L/2,-W*.36); s.lineTo(-L*.4,-W/2); s.lineTo(L*.34,-W/2); s.lineTo(L/2,-W*.3);
+    s.lineTo(L/2,W*.3); s.lineTo(L*.34,W/2); s.lineTo(-L*.4,W/2); s.lineTo(-L/2,W*.36); s.lineTo(-L/2,-W*.36);
+    const g=new THREE.ExtrudeGeometry(s,{depth:H,bevelEnabled:false,steps:4});
+    g.rotateX(-Math.PI/2);
+    const p=g.attributes.position,col=[],cW=C('#6E4B2A'),cD=C('#3A2716'),cS=C(stripe);
+    for(let i=0;i<p.count;i++){
+      const y=p.getY(i),f=Math.min(1,Math.max(0,y/H)),ax=Math.abs(p.getX(i))/(L/2);
+      p.setZ(i,p.getZ(i)*(.66+.34*f));          // 평저선: 바닥은 좁고 평평, 위로 벌어짐
+      p.setY(i,y-H*.42+ax*ax*.9*f);              // 이물·고물이 솟는 선형
+      const c=f>.85?cS:(f<.3?cD:cW); col.push(c.r,c.g,c.b);
+    }
+    g.setAttribute('color',new THREE.Float32BufferAttribute(col,3)); g.computeVertexNormals();
+    return g;
+  }
+  function battenSail(w,h,spec){ // 대나무 활대를 가로로 댄 조선 돛
+    const g=new THREE.PlaneGeometry(w,h,2,6); g.rotateY(Math.PI/2);
+    const G=meshes(g,sailMats(spec&&Object.assign({pw:w,ph:h},spec)));
+    const bm=mat('#4E3820');
+    for(let k=0;k<=6;k++)for(const sx of[-.05,.05]){const b=new THREE.Mesh(new THREE.BoxGeometry(.07,.07,w*1.06),bm); b.position.set(sx,-h/2+k*h/6,0); G.add(b)}
+    return G;
+  }
+  /* 서울 깃발: 서울시 공식 마크 PNG를 data URI로 SEOUL_MARK_SRC에 넣으면 글자 대신 그 마크를 그립니다 */
+  const SEOUL_MARK_SRC='';
+  const SEOUL_MARK=new Image(); let seoulReady=false; const seoulFlags=[];
+  function drawSeoulFlag(o){
+    const g=o.c.getContext('2d'),w=o.c.width,h=o.c.height;
+    g.fillStyle='#FFFFFF'; g.fillRect(0,0,w,h);
+    if(seoulReady){const r=Math.min(w*.82/SEOUL_MARK.width,h*.82/SEOUL_MARK.height),mw=SEOUL_MARK.width*r,mh=SEOUL_MARK.height*r; g.drawImage(SEOUL_MARK,(w-mw)/2,(h-mh)/2,mw,mh)}
+    else{g.fillStyle='#1E3C6E'; g.textAlign='center'; g.textBaseline='middle'; g.font='900 74px "Noto Serif KR", serif'; g.fillText('서울',w/2,h*.43);
+      g.font='500 22px "IBM Plex Mono", monospace'; g.fillText('SEOUL ANCHOR',w/2,h*.82)}
+    o.t.needsUpdate=true;
+  }
+  if(SEOUL_MARK_SRC){SEOUL_MARK.onload=()=>{seoulReady=true;seoulFlags.forEach(drawSeoulFlag)}; SEOUL_MARK.src=SEOUL_MARK_SRC}
+  function seoulFlag(w,h){
+    const c=document.createElement('canvas'); c.width=256; c.height=160;
+    const t=new THREE.CanvasTexture(c); if(THREE.sRGBEncoding)t.encoding=THREE.sRGBEncoding;
+    const o={c,t}; seoulFlags.push(o); drawSeoulFlag(o);
+    const fg=new THREE.PlaneGeometry(w,h,10,1); fg.translate(-w/2,0,0);
+    const fl=new THREE.Mesh(fg,new THREE.MeshStandardMaterial({map:t,side:THREE.DoubleSide,roughness:1}));
+    flags.push({flag:fl,base:fg.attributes.position.array.slice(),ph:Math.random()*6});
+    return fl;
+  }
+  /* 선원: admiral(장수·홍철릭) · soldier(군졸·전립·창) · rower(격군·머리띠) */
+  function makeCrew(kind){
+    const P=new THREE.Group();
+    const robe=kind==='admiral'?'#A3262A':kind==='rower'?'#E6DCC4':'#2C3E66';
+    const torso=new THREE.Mesh(new THREE.CylinderGeometry(.2,.32,.9,6),mat(robe)); torso.position.y=.45; P.add(torso);
+    const belt=new THREE.Mesh(new THREE.CylinderGeometry(.22,.25,.08,6),mat(kind==='admiral'?'#C9A227':'#8C2A26')); belt.position.y=.66; P.add(belt);
+    const head=new THREE.Mesh(new THREE.SphereGeometry(.17,7,5),mat('#E0B48A')); head.position.y=1.06; P.add(head);
+    if(kind==='rower'){
+      const band=new THREE.Mesh(new THREE.CylinderGeometry(.176,.176,.06,7),mat('#F4EFE2')); band.position.y=1.11; P.add(band);
+      const knot=new THREE.Mesh(new THREE.SphereGeometry(.08,5,4),mat('#1A1A1A')); knot.position.y=1.25; P.add(knot);
+    } else {
+      const brim=new THREE.Mesh(new THREE.CylinderGeometry(.36,.36,.04,10),mat('#151515')); brim.position.y=1.16; P.add(brim);
+      const crown=new THREE.Mesh(new THREE.SphereGeometry(.16,8,4,0,Math.PI*2,0,Math.PI/2),mat('#151515')); crown.position.y=1.16; P.add(crown);
+      const orn=new THREE.Mesh(new THREE.SphereGeometry(.06,5,4),mat(kind==='admiral'?'#C9A227':'#B4552F')); orn.position.y=1.34; P.add(orn);
+    }
+    const ag=new THREE.BoxGeometry(.11,.5,.11); ag.translate(0,-.22,0);
+    const armL=new THREE.Mesh(ag,mat(robe)); armL.position.set(0,.84,.26); P.add(armL);
+    const armR=new THREE.Mesh(ag,mat(robe)); armR.position.set(0,.84,-.26); P.add(armR);
+    if(kind==='soldier'){
+      const sp=new THREE.Mesh(new THREE.CylinderGeometry(.03,.03,2,4),mat('#5B4426')); sp.position.set(.08,.95,-.34); P.add(sp);
+      const tip=new THREE.Mesh(new THREE.ConeGeometry(.06,.24,4),mat('#B9C0C4')); tip.position.set(.08,2.05,-.34); P.add(tip);
+    }
+    P.scale.setScalar(1.3); P.userData={kind,armL,armR,ph:Math.random()*6,ry:0};
+    crew.push(P); return P;
+  }
+  function place(body,p,x,y,z,ry){p.position.set(x,y,z); p.rotation.y=ry||0; p.userData.ry=ry||0; body.add(p); return p}
   function makeShip(s){
     const G=new THREE.Group(); const body=new THREE.Group(); G.add(body);
-    const big=s.rig==='galleon', car=s.rig==='caravel';
-    const L=big?16:car?11:13.5, W=big?5.6:car?3.8:4.8, H=big?3.6:car?2.6:3.2;
-    const hull=new THREE.Mesh(hullGeo(L,W,H,s.color),new THREE.MeshStandardMaterial({vertexColors:true,flatShading:true,roughness:.8}));
+    const turtle=s.rig==='geobuk', big=s.rig==='daejang';
+    const L=big?17:turtle?14:13, W=big?6.2:5, H=big?3.4:3;
+    const hull=new THREE.Mesh(joseonHull(L,W,H,s.color),[mat('#9C7444'),new THREE.MeshStandardMaterial({vertexColors:true,flatShading:true,roughness:.85})]);
     hull.userData.stop=s; body.add(hull);
-    const deckY=H*.58;
-    const deck=new THREE.Mesh(new THREE.BoxGeometry(L*.86,.2,W*.78),mat('#B48B57')); deck.position.set(-L*.03,deckY,0); body.add(deck);
-    const castle=new THREE.Mesh(new THREE.BoxGeometry(L*(car?.18:.24),car?1:1.8,W*.8),mat('#6B4A2B')); castle.position.set(-L*.36,deckY+(car?.5:.9),0); body.add(castle);
-    const rail=new THREE.Mesh(new THREE.BoxGeometry(L*(car?.18:.24)+.1,.25,W*.82),mat(s.color)); rail.position.set(-L*.36,deckY+(car?1.05:1.85),0); body.add(rail);
-    if(!car){const fc=new THREE.Mesh(new THREE.BoxGeometry(L*.14,1.1,W*.6),mat('#6B4A2B')); fc.position.set(L*.3,deckY+.55,0); body.add(fc)}
-    const bow=new THREE.Mesh(new THREE.CylinderGeometry(.12,.12,L*.38,5),mat('#5B4426')); bow.rotation.z=-Math.PI/2+.32; bow.position.set(L*.56,deckY+.8,0); body.add(bow);
-    const KU={kind:'ku',fit:.8,maxH:.5,cx:.5,cy:.52}, GL={kind:'glyph',color:s.color,glyph:s.glyph,r:.2,cx:.5,cy:.5};
-    const masts=big?[[L*.22,13],[-L*.02,16],[-L*.27,11]]:car?[[L*.16,10.5],[-L*.18,9]]:[[L*.2,11],[-L*.06,13.5],[-L*.3,9]];
-    masts.forEach(([x,h],mi)=>{
-      const m=new THREE.Mesh(new THREE.CylinderGeometry(.14,.2,h,6),mat('#4E3820')); m.position.set(x,deckY+h/2,0); body.add(m);
-      const main=(big&&mi===1)||(!big&&!car&&mi===1)||(car&&mi===0);
-      if(car){
-        const sl=lateen(7.5-mi*1.5,h*.82,main?{kind:'ku',fit:.5,maxH:.26,cx:.5,cy:.76}:{kind:'glyph',color:s.color,glyph:s.glyph,r:.13,cx:.5,cy:.68}); sl.position.set(x+1.6,deckY+1.4,0); sl.rotation.y=.25; body.add(sl);
-        const yard=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,9.5-mi*1.6,5),mat('#4E3820')); yard.position.set(x-.4,deckY+h*.5,0); yard.rotation.z=1.05; body.add(yard);
-      } else {
-        const tiers=mi===2?1:2;
-        for(let t=0;t<tiers;t++){
-          const sw=(W*1.55)*(t?0.72:1)*(mi===1?1.05:.9), sh=h*(t?0.26:.36);
-          const sy=deckY+h*(t?0.74:0.4);
-          const sl=squareSail(sw,sh,t===0?(mi===0?KU:(main?GL:null)):null); sl.position.set(x+.25,sy,0); body.add(sl);
-          const yard=new THREE.Mesh(new THREE.CylinderGeometry(.08,.08,sw+.6,5),mat('#4E3820')); yard.rotation.x=Math.PI/2; yard.position.set(x+.1,sy+sh/2,0); body.add(yard);
-        }
+    const deckY=H*.58, wood=mat('#6B4A2B'), dark=mat('#2E2116'), plank=mat('#B48B57');
+    const deck=new THREE.Mesh(new THREE.BoxGeometry(L*.9,.2,W*.84),plank); deck.position.set(0,deckY,0); body.add(deck);
+    // 노
+    const oarM=mat('#8A6A3B'), nO=big?8:6;
+    for(let k=0;k<nO;k++)for(const sd of[-1,1]){const o=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,4.2,4),oarM); o.position.set(-L*.3+k*(L*.6/(nO-1)),deckY-.6,sd*(W*.5+1.2)); o.rotation.x=-sd*1.15; body.add(o)}
+    const KU={kind:'ku',fit:.82,maxH:.42,cx:.5,cy:.5}, GL={kind:'glyph',color:s.color,glyph:s.glyph,r:.22,cx:.5,cy:.5};
+    let sailBase, masts;
+    if(!turtle){
+      /* 판옥: 2층 갑판, 방패판, 여장, 장대 */
+      const pl=L*.8, pw=W*.98, ph=1.5, px=-L*.02;
+      const panok=new THREE.Mesh(new THREE.BoxGeometry(pl,ph,pw),wood); panok.position.set(px,deckY+ph/2,0); body.add(panok);
+      const nS=Math.floor(pl/1.1), sx=k=>px-pl/2+.55+k*(pl-1.1)/(nS-1);
+      for(let k=0;k<nS;k++)for(const sd of[-1,1]){
+        const sh=new THREE.Mesh(new THREE.BoxGeometry(.92,1.1,.08),mat(k%2?'#E8DFC8':s.color)); sh.position.set(sx(k),deckY+ph*.52,sd*(pw/2+.05)); body.add(sh);
       }
-      if(mi===(big?1:0)||(car&&mi===0)){
+      const topY=deckY+ph;
+      const upper=new THREE.Mesh(new THREE.BoxGeometry(pl+.2,.16,pw+.2),plank); upper.position.set(px,topY,0); body.add(upper);
+      for(let k=0;k<nS;k++)for(const sd of[-1,1]){const cr=new THREE.Mesh(new THREE.BoxGeometry(.62,.5,.12),dark); cr.position.set(sx(k),topY+.32,sd*(pw/2)); body.add(cr)}
+      // 장대(지휘 누각)
+      const ps=big?1.35:1, pv=new THREE.Group(); pv.position.set(-L*.25,topY+.08,0); body.add(pv);
+      const postM=mat('#9E2B25');
+      for(const x of[-1,1])for(const z of[-1,1]){const p=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,2*ps,5),postM); p.position.set(x*1.1*ps,ps,z*.9*ps); pv.add(p)}
+      const eave=new THREE.Mesh(new THREE.BoxGeometry(2.9*ps,.14,2.5*ps),mat('#2F6B45')); eave.position.y=2*ps; pv.add(eave);
+      const proof=new THREE.Mesh(new THREE.ConeGeometry(2.1*ps,1*ps,4),mat('#3B4044')); proof.rotation.y=Math.PI/4; proof.scale.set(1.25,1,1); proof.position.y=2.55*ps; pv.add(proof);
+      place(pv,makeCrew(big?'admiral':'soldier'),0,.12,0,0);
+      // 군졸·격군
+      place(body,makeCrew('soldier'),L*.32,topY+.08,W*.3,0);
+      place(body,makeCrew('soldier'),L*.32,topY+.08,-W*.3,0);
+      place(body,makeCrew('soldier'),L*.1,topY+.08,W*.34,.6);
+      if(big){place(body,makeCrew('soldier'),-L*.04,topY+.08,-W*.34,-.6); place(body,makeCrew('soldier'),-L*.4,topY+.08,W*.3,Math.PI)}
+      place(body,makeCrew('rower'),-L*.44,deckY+.1,0,Math.PI);
+      sailBase=topY+1.1;
+      masts=big?[[L*.24,11],[L*.04,13]]:[[L*.24,9.5],[L*.04,11]];
+    } else {
+      /* 거북선: 철갑 등판, 송곳, 십자 통로, 용머리 */
+      const sl=L*.78, R=W*.56, sq=.62, cx=-L*.02;
+      const shell=new THREE.Mesh(new THREE.CylinderGeometry(R,R,sl,12,1,false,0,Math.PI),mat('#4A4A3C'));
+      shell.rotation.z=Math.PI/2; shell.scale.set(sq,1,1); shell.position.set(cx,deckY,0); body.add(shell);
+      const ridgeY=deckY+R*sq;
+      const ridge=new THREE.Mesh(new THREE.BoxGeometry(sl,.14,.5),mat('#7A5531')); ridge.position.set(cx,ridgeY+.04,0); body.add(ridge);
+      const cross=new THREE.Mesh(new THREE.BoxGeometry(.5,.12,R*1.5),mat('#7A5531')); cross.position.set(cx-L*.06,ridgeY-.1,0); body.add(cross);
+      const spikeM=mat('#C9CDD0',{metalness:.4,roughness:.5});
+      for(let i=0;i<9;i++)for(let j=0;j<6;j++){
+        const a=Math.PI*(.14+j*.145); if(Math.abs(a-Math.PI/2)<.2)continue;
+        const sp=new THREE.Mesh(new THREE.ConeGeometry(.08,.42,4),spikeM);
+        sp.position.set(cx-sl/2+.7+i*(sl-1.4)/8,deckY+R*sq*Math.sin(a),R*Math.cos(a)); sp.rotation.x=Math.PI/2-a; body.add(sp);
+      }
+      for(let k=0;k<6;k++)for(const sd of[-1,1]){const gp=new THREE.Mesh(new THREE.BoxGeometry(.4,.36,.1),dark); gp.position.set(cx-sl/2+1.2+k*(sl-2.4)/5,deckY+.35,sd*(R*.97)); body.add(gp)}
+      // 용머리
+      const dh=new THREE.Group(); dh.position.set(L*.38,deckY+.4,0); body.add(dh);
+      const dM=mat('#7A6430');
+      const neck=new THREE.Mesh(new THREE.CylinderGeometry(.42,.6,1.9,6),dM); neck.rotation.z=-1; neck.position.set(.5,.35,0); dh.add(neck);
+      const head=new THREE.Mesh(new THREE.BoxGeometry(1.5,.85,1),dM); head.position.set(1.45,.95,0); dh.add(head);
+      const jaw=new THREE.Mesh(new THREE.BoxGeometry(1.2,.22,.9),mat('#A3262A')); jaw.position.set(1.65,.45,0); jaw.rotation.z=-.22; dh.add(jaw);
+      for(const z of[-.3,.3]){
+        const horn=new THREE.Mesh(new THREE.ConeGeometry(.1,.6,4),mat('#E8DFC8')); horn.position.set(1.05,1.55,z); horn.rotation.z=.6; dh.add(horn);
+        const eye=new THREE.Mesh(new THREE.SphereGeometry(.14,6,5),mat('#FFFFFF')); eye.position.set(1.75,1.12,z*1.5); dh.add(eye);
+        const pu=new THREE.Mesh(new THREE.SphereGeometry(.07,5,4),mat('#111111')); pu.position.set(1.85,1.12,z*1.62); dh.add(pu);
+      }
+      place(body,makeCrew('soldier'),cx+L*.12,ridgeY+.1,0,0);
+      place(body,makeCrew('soldier'),cx-L*.06,ridgeY-.05,R*.5,.5);
+      place(body,makeCrew('rower'),-L*.45,deckY+.1,0,Math.PI);
+      sailBase=ridgeY+.9;
+      masts=[[L*.16,10],[-L*.1,11.5]];
+    }
+    masts.forEach(([x,h],mi)=>{
+      const m=new THREE.Mesh(new THREE.CylinderGeometry(.14,.2,h,6),mat('#4E3820')); m.position.set(x,sailBase-1+h/2,0); body.add(m);
+      const main=mi===1, sw=W*(main?1.3:1.1)*(big?1.05:1), sh=(h-1.6)*.82;
+      const sl=battenSail(sw,sh,main?KU:GL); sl.position.set(x+.3,sailBase+sh/2,0); body.add(sl);
+      if(main){
         const fg=new THREE.PlaneGeometry(2.2,1.3,8,1); fg.translate(1.1,0,0);
         const flag=new THREE.Mesh(fg,new THREE.MeshStandardMaterial({color:C(s.color),side:THREE.DoubleSide,flatShading:true}));
-        flag.position.set(x,deckY+h+.6,0); body.add(flag); flags.push({flag,base:fg.attributes.position.array.slice(),ph:Math.random()*6});
+        flag.position.set(x,sailBase-1+h+.6,0); body.add(flag); flags.push({flag,base:fg.attributes.position.array.slice(),ph:Math.random()*6});
       }
     });
+    // 고물 깃대: 서울 깃발
+    const poleH=turtle?5:6.2, pole=new THREE.Mesh(new THREE.CylinderGeometry(.07,.09,poleH,5),mat('#4E3820'));
+    pole.position.set(-L*.49,deckY+poleH/2,0); body.add(pole);
+    const sf=seoulFlag(2.6,1.62); sf.position.set(-L*.49,deckY+poleH-.85,0); body.add(sf);
     const lan=new THREE.Mesh(new THREE.SphereGeometry(.32,8,6),new THREE.MeshStandardMaterial({color:0xFFE2A0,emissive:0xFFB840,emissiveIntensity:.2}));
-    lan.position.set(-L*.5,deckY+2.6,0); body.add(lan); lanterns.push(lan);
+    lan.position.set(-L*.47,deckY+1.4,W*.3); body.add(lan); lanterns.push(lan);
     G.userData={ship:s,phase:Math.random()*6,L};
     return G;
   }
+
+  /* =====================================================================
+     건국대 방공: 천궁 지대공 미사일 + KU KF-21 동시 요격
+     기항지(주요 포스트)에 닿을 때마다 위협체가 날아오고, 모항 건국대에서
+     천궁이 수직 발사되고 KF-21이 이륙해 같은 순간 요격합니다.
+     ===================================================================== */
+  const AB=(c,o=1)=>new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:o,blending:THREE.AdditiveBlending,depthWrite:false});
+  const X1=new THREE.Vector3(1,0,0);
+  function makeSAM(){
+    const G=new THREE.Group(), w=mat('#EEF0EA');
+    const b=new THREE.Mesh(new THREE.CylinderGeometry(.3,.3,4.2,8),w); b.rotation.z=-Math.PI/2; G.add(b);
+    const n=new THREE.Mesh(new THREE.ConeGeometry(.3,1.1,8),mat('#2B2F2C')); n.rotation.z=-Math.PI/2; n.position.x=2.65; G.add(n);
+    const band=new THREE.Mesh(new THREE.CylinderGeometry(.31,.31,.28,8),mat('#00703E')); band.rotation.z=-Math.PI/2; band.position.x=1.1; G.add(band);
+    for(let k=0;k<2;k++){const f=new THREE.Mesh(new THREE.BoxGeometry(.75,.05,1.1),w); f.position.x=-1.75; f.rotation.x=k*Math.PI/2; G.add(f)}
+    const fl=new THREE.Mesh(new THREE.ConeGeometry(.3,2.4,8),AB(0xFFB347,.95)); fl.rotation.z=Math.PI/2; fl.position.x=-3.3; G.add(fl);
+    G.userData.flame=fl; return G;
+  }
+  function makeJet(){
+    const G=new THREE.Group(), skin=mat('#8E979C',{roughness:.55,metalness:.25}), dk=mat('#59636A');
+    const fu=new THREE.Mesh(new THREE.CylinderGeometry(.55,.72,7,8),skin); fu.rotation.z=-Math.PI/2; G.add(fu);
+    const no=new THREE.Mesh(new THREE.ConeGeometry(.55,2.4,8),skin); no.rotation.z=-Math.PI/2; no.position.x=4.7; G.add(no);
+    const cp=new THREE.Mesh(new THREE.SphereGeometry(.42,8,6),mat('#24343C',{metalness:.5,roughness:.2})); cp.scale.set(2.2,.9,.9); cp.position.set(2.5,.5,0); G.add(cp);
+    const wingG=(()=>{const s=new THREE.Shape(); s.moveTo(1.2,0); s.lineTo(-2.2,4.3); s.lineTo(-3.3,4.3); s.lineTo(-3.4,0); s.lineTo(1.2,0);
+      const g=new THREE.ExtrudeGeometry(s,{depth:.14,bevelEnabled:false}); g.rotateX(Math.PI/2); return g})();
+    const stabG=(()=>{const s=new THREE.Shape(); s.moveTo(-2.6,0); s.lineTo(-3.9,2.2); s.lineTo(-4.5,2.2); s.lineTo(-4.4,0); s.lineTo(-2.6,0);
+      const g=new THREE.ExtrudeGeometry(s,{depth:.1,bevelEnabled:false}); g.rotateX(Math.PI/2); return g})();
+    const finG=(()=>{const s=new THREE.Shape(); s.moveTo(-1.9,0); s.lineTo(-3.4,2.3); s.lineTo(-4.1,2.3); s.lineTo(-4.2,0); s.lineTo(-1.9,0);
+      return new THREE.ExtrudeGeometry(s,{depth:.1,bevelEnabled:false})})();
+    const wm=mat('#8E979C',{roughness:.55,metalness:.25,side:THREE.DoubleSide});
+    for(const sd of[1,-1]){
+      const w=new THREE.Mesh(wingG,wm); w.scale.z=sd; w.position.y=-.1; G.add(w);
+      const st=new THREE.Mesh(stabG,wm); st.scale.z=sd; G.add(st);
+      const fn=new THREE.Mesh(finG,wm); fn.position.set(0,.45,sd*.55); fn.rotation.x=sd*.42; G.add(fn);
+      const nz=new THREE.Mesh(new THREE.CylinderGeometry(.32,.28,.8,8),dk); nz.rotation.z=-Math.PI/2; nz.position.set(-3.85,-.05,sd*.33); G.add(nz);
+      const ab=new THREE.Mesh(new THREE.ConeGeometry(.27,1.8,8),AB(0xFF8A3D,.9)); ab.rotation.z=Math.PI/2; ab.position.set(-5.1,-.05,sd*.33); G.add(ab); (G.userData.ab=G.userData.ab||[]).push(ab);
+      const ku=kuBoard(1.7,.9,{bg:'#E9ECEA'}); ku.rotation.x=-Math.PI/2; ku.position.set(-2.0,-.03,sd*2.3); G.add(ku);
+    }
+    const tk=kuBoard(1.2,.62,{bg:'#E9ECEA'}); tk.position.set(-3.5,1.77,1.27); tk.rotation.x=.42; G.add(tk);
+    return G;
+  }
+  function makeThreat(){
+    const G=new THREE.Group(), r=mat('#6E1E18');
+    const b=new THREE.Mesh(new THREE.ConeGeometry(.5,3.4,6),r); b.rotation.z=-Math.PI/2; G.add(b);
+    const w=new THREE.Mesh(new THREE.BoxGeometry(1.1,.06,3.2),r); w.position.x=-.6; G.add(w);
+    const lt=new THREE.Mesh(new THREE.SphereGeometry(.32,6,5),AB(0xFF3B2F,1)); lt.position.x=-1.8; G.add(lt); G.userData.lt=lt;
+    return G;
+  }
+  const bez=(a,b,c,d,u,o)=>{const v=1-u; return o.set(0,0,0).addScaledVector(a,v*v*v).addScaledVector(b,3*v*v*u).addScaledVector(c,3*v*u*u).addScaledVector(d,u*u*u)};
+  function strikeKit(SC,{puffN=160}={}){
+    const K={ev:[],puffs:[],pi:0};
+    const pg=new THREE.IcosahedronGeometry(1,0);
+    for(let i=0;i<puffN;i++){const m=new THREE.Mesh(pg,new THREE.MeshBasicMaterial({color:0xEDEFEA,transparent:true,opacity:0,depthWrite:false})); m.visible=false; SC.add(m); K.puffs.push({m,life:0,max:1,s:1})}
+    const puff=(p,s,life,col)=>{const q=K.puffs[K.pi++%puffN]; q.m.position.copy(p); q.m.visible=true; q.life=q.max=life; q.s=s; q.m.material.color.set(col||0xEDEFEA)};
+    const tA=new THREE.Vector3(), tB=new THREE.Vector3(), up=new THREE.Vector3(0,1,0);
+    const aim=(o,dir)=>{if(dir.lengthSq()>1e-8)o.quaternion.setFromUnitVectors(X1,tA.copy(dir).normalize())};
+    K.fire=o=>{
+      const e=Object.assign({t:0,dur:6,sam:makeSAM(),jet:makeJet(),th:makeThreat(),boom:null,after:0,last:{s:o.S.clone(),j:o.R0.clone(),h:o.from.clone()}},o);
+      const d=e.S.distanceTo(e.P);
+      e.s1=e.S.clone().addScaledVector(up,10+d*.3); e.s2=e.P.clone().addScaledVector(up,4+d*.12).lerp(e.S,.12);
+      const rd=e.R1.clone().sub(e.R0).normalize(), toP=e.P.clone().sub(e.R1).setY(0).normalize();
+      e.side=new THREE.Vector3(-toP.z,0,toP.x).multiplyScalar(2.6);
+      e.Pj=e.P.clone().add(e.side);
+      e.j1=e.R1.clone().addScaledVector(rd,8+d*.12).addScaledVector(up,3+d*.04);
+      e.j2=e.Pj.clone().addScaledVector(toP,-(8+d*.12)).addScaledVector(up,-1);
+      e.sam.position.copy(e.S); e.jet.position.copy(e.R0); aim(e.jet,rd); e.th.position.copy(e.from);
+      [e.sam,e.jet,e.th].forEach(m=>SC.add(m)); K.ev.push(e); e.onFire&&e.onFire(e); return e;
+    };
+    K.busy=()=>K.ev.length>0;
+    K.update=(dt,t,S=1)=>{
+      K.puffs.forEach(q=>{if(!q.m.visible)return; q.life-=dt; const k=Math.max(0,q.life/q.max); q.m.material.opacity=.55*k; q.m.scale.setScalar(q.s*S*(1+(1-k)*2.2)); if(q.life<=0)q.m.visible=false});
+      for(let i=K.ev.length-1;i>=0;i--){const e=K.ev[i]; e.t+=dt;
+        [e.sam,e.jet,e.th].forEach(m=>m&&m.scale.setScalar(S));
+        if(!e.boom){
+          const u=Math.min(1,e.t/e.dur);
+          // 천궁: 수직 발사 후 전환
+          bez(e.S,e.s1,e.s2,e.P,Math.pow(u,1.35),tB); aim(e.sam,tA.copy(tB).sub(e.last.s)); e.sam.position.copy(tB); e.last.s.copy(tB);
+          e.sam.userData.flame.scale.set(1,.8+Math.random()*.5,1);
+          puff(tB.clone().addScaledVector(tA.normalize(),-3.2*S),.55,2.4);
+          // KF-21: 활주 → 이륙 → 요격
+          if(u<.22){const ua=(u/.22)**2; tB.copy(e.R0).lerp(e.R1,ua)} else bez(e.R1,e.j1,e.j2,e.Pj,(u-.22)/.78,tB);
+          aim(e.jet,tA.copy(tB).sub(e.last.j)); e.jet.position.copy(tB); e.last.j.copy(tB);
+          e.jet.userData.ab.forEach(a=>a.scale.set(1,.7+Math.random()*.5,1));
+          if(u>.22)puff(tB.clone().addScaledVector(tA.normalize(),-5.4*S),.28,1.2);
+          // 위협체
+          tB.copy(e.from).lerp(e.P,u); aim(e.th,tA.copy(tB).sub(e.last.h)); e.th.position.copy(tB); e.last.h.copy(tB);
+          e.th.userData.lt.material.opacity=(Math.sin(t*18)>0)?1:.2;
+          if(u>=1){
+            e.jv=tA.copy(e.jet.position).sub(e.j2).normalize().clone();
+            e.SC=SC; SC.remove(e.sam); SC.remove(e.th);
+            const B=new THREE.Group(); B.position.copy(e.P); SC.add(B);
+            const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),AB(0xFFF1B0,1)), shell=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),AB(0xFF7A2E,.85));
+            const ring=new THREE.Mesh(new THREE.RingGeometry(.9,1.15,32),AB(0xFFD27A,.9)); ring.material.side=THREE.DoubleSide;
+            B.add(core,shell,ring); e.boom={B,core,shell,ring};
+            for(let k=0;k<14;k++)puff(e.P.clone().add(new THREE.Vector3((Math.random()-.5)*3,(Math.random()-.5)*3,(Math.random()-.5)*3).multiplyScalar(S)),1.1,3.2,0x6B6F6A);
+            e.onBoom&&e.onBoom(e);
+          }
+        } else {
+          e.after+=dt; const a=e.after, bk=Math.min(1,a/1.3);
+          e.boom.core.scale.setScalar(S*(1+bk*4)); e.boom.core.material.opacity=1-bk;
+          e.boom.shell.scale.setScalar(S*(1.5+bk*7)); e.boom.shell.material.opacity=.85*(1-bk);
+          e.boom.ring.scale.setScalar(S*(1+bk*11)); e.boom.ring.material.opacity=.9*(1-bk); e.boom.ring.lookAt(e.cam?e.cam.position:up);
+          e.jet.position.addScaledVector(e.jv,dt*(40+e.P.distanceTo(e.S)*.05)*Math.max(1,S*.6)); e.jv.y+=dt*.25; aim(e.jet,e.jv);
+          if(a>.8&&a<2.6)puff(e.jet.position.clone().addScaledVector(e.jv,-5.4*S),.28,1);
+          if(a>2.6)e.jet.scale.setScalar(S*Math.max(0,1-(a-2.6)/.6));
+          if(a>3.2){SC.remove(e.jet); SC.remove(e.boom.B); K.ev.splice(i,1); e.onDone&&e.onDone(e)}
+        }
+      }
+    };
+    return K;
+  }
+
   const ships=SAILING.map((s,i)=>{const g=makeShip(s); g.position.copy(shipPos[i]); g.rotation.y=-1.4+(i%2? .25:-.1); scene.add(g); return g;});
   // buoys between ships
   const buoys=[]; for(let i=0;i<=SAILING.length;i++){const b=new THREE.Mesh(new THREE.ConeGeometry(.7,1.8,6),mat(i%2?'#00703E':'#C9473C'));b.position.set(12+i*GAP,0,12);scene.add(b);buoys.push(b)}
@@ -703,17 +961,81 @@ measure();
     const sc=document.createElement('canvas'); sc.width=512; sc.height=160; const sTex=new THREE.CanvasTexture(sc); if(THREE.sRGBEncoding)sTex.encoding=THREE.sRGBEncoding;
     const sign=new THREE.Mesh(new THREE.PlaneGeometry(5.4,1.7),new THREE.MeshBasicMaterial({map:sTex})); sign.position.set(-3.8,5.2,.72); D.add(sign);
     D.userData.drawSign=()=>{const g=sc.getContext('2d'); g.fillStyle='#F4EFE2'; g.fillRect(0,0,512,160); g.strokeStyle=roofC; g.lineWidth=8; g.strokeRect(6,6,500,148);
-      g.fillStyle=roofC; g.font='500 26px "IBM Plex Mono", monospace'; g.textAlign='center'; g.fillText(d.hull+' · 보급소',256,48);
-      g.fillStyle='#10251C'; g.font='900 62px "Noto Serif KR", serif'; g.fillText(d.name,256,118); sTex.needsUpdate=true};
+      if(markReady){const mh=70,mw=mh*MARK_RATIO; g.drawImage(KU_MARK,24,(160-mh)/2,mw,mh)}
+      g.fillStyle=roofC; g.font='500 24px "IBM Plex Mono", monospace'; g.textAlign='center'; g.fillText(d.hull+' · 보급소',330,52);
+      g.fillStyle='#10251C'; g.font='900 56px "Noto Serif KR", serif'; g.fillText(d.name,330,118); sTex.needsUpdate=true};
     D.userData.drawSign();
     // 깃발 + 등불
     const mast=new THREE.Mesh(new THREE.CylinderGeometry(.1,.12,6,6),postM); mast.position.set(7.2,5,-3.8); D.add(mast);
     const fg=new THREE.PlaneGeometry(2,1.2,8,1); fg.translate(1,0,0);
-    const flag=new THREE.Mesh(fg,new THREE.MeshStandardMaterial({color:C(d.color),side:THREE.DoubleSide,flatShading:true})); flag.position.set(7.2,7.4,-3.8); D.add(flag);
+    const flag=new THREE.Mesh(fg,new THREE.MeshStandardMaterial({color:C(d.color),side:THREE.DoubleSide,flatShading:true})); flag.position.set(7.2,7.6,-3.8); D.add(flag);
     flags.push({flag,base:fg.attributes.position.array.slice(),ph:1.3+di*2});
+    const kf=kuBoard(2.6,1.4,{flag:true,border:'#00703E'}); kf.position.set(7.2,6.1,-3.8); D.add(kf);
+    const kb=kuBoard(3.2,1.7,{border:roofC}); kb.position.set(-3.8,7.7,.2); kb.rotation.x=-.25; D.add(kb);
     const lan=new THREE.Mesh(new THREE.SphereGeometry(.3,8,6),new THREE.MeshStandardMaterial({color:0xFFE2A0,emissive:0xFFB840,emissiveIntensity:.2})); lan.position.set(3.6,5.3,-.4); D.add(lan); lanterns.push(lan);
     return D;
   });
+
+  /* ---- 건국대 캠퍼스: 일감호(보급소가 떠 있는 호수) · 새천년관 (형상화) ---- */
+  const campus=new THREE.Group(); scene.add(campus);
+  const LK={x:14,z:-17,rx:17,rz:11};
+  const cs=new THREE.Shape(); [[-14,-5],[24,-5],[36,-10],[46,-14],[46,-58],[-14,-58]].forEach(([x,z],i)=>i?cs.lineTo(x,-z):cs.moveTo(x,-z));
+  const hole=new THREE.Path(); hole.absellipse(LK.x,-LK.z,LK.rx,LK.rz,0,Math.PI*2,false,0); cs.holes.push(hole);
+  const cg=new THREE.ExtrudeGeometry(cs,{depth:2.6,bevelEnabled:false,curveSegments:28}); cg.rotateX(-Math.PI/2);
+  const lawn=mat('#7DB57A'), bank=mat('#B9AC86');
+  const cl=new THREE.Mesh(cg,[lawn,bank]); cl.position.y=-1; campus.add(cl);
+  const lakeShape=new THREE.Shape(); lakeShape.absellipse(LK.x,-LK.z,LK.rx,LK.rz,0,Math.PI*2,false,0);
+  const lg=new THREE.ShapeGeometry(lakeShape,40); lg.rotateX(-Math.PI/2);
+  const lakeMat=new THREE.MeshPhongMaterial({color:0x3C8C86,shininess:80,specular:0xBFE3D8,flatShading:true});
+  const lake=new THREE.Mesh(lg,lakeMat); lake.position.y=1.15; campus.add(lake);
+  // 호숫가 산책로와 나무
+  const pathM=mat('#E2D6B8');
+  const walk=new THREE.Mesh(new THREE.RingGeometry(1,1.12,48),pathM); walk.rotation.x=-Math.PI/2; walk.scale.set(LK.rx+1.6,LK.rz+1.6,1); walk.position.set(LK.x,1.63,LK.z); campus.add(walk);
+  const leaf=mat('#3F7F4E'), leaf2=mat('#6FA35A'), trunk=mat('#6B4A2B');
+  for(let k=0;k<22;k++){const a=k/22*Math.PI*2+.13, rr=1.25+(k%3)*.08, x=LK.x+Math.cos(a)*(LK.rx+3)*rr*.82, z=LK.z+Math.sin(a)*(LK.rz+3)*rr*.82;
+    if(z>-6.2||x<-12)continue;
+    const tr=new THREE.Mesh(new THREE.CylinderGeometry(.18,.24,1.6,5),trunk); tr.position.set(x,2.4,z); campus.add(tr);
+    const cr=new THREE.Mesh(k%2?new THREE.IcosahedronGeometry(1.5,0):new THREE.ConeGeometry(1.4,3.2,6),k%2?leaf2:leaf); cr.position.set(x,k%2?3.9:4.5,z); campus.add(cr)}
+  // 호수 섬과 정자, 구름다리
+  const isl2=new THREE.Mesh(new THREE.CylinderGeometry(2.4,2.8,1.2,10),lawn); isl2.position.set(13,1.2,-24.5); campus.add(isl2);
+  const jz=new THREE.Group(); jz.position.set(13,1.8,-24.5); campus.add(jz);
+  for(const x of[-.9,.9])for(const z of[-.9,.9]){const p=new THREE.Mesh(new THREE.CylinderGeometry(.08,.08,1.8,5),mat('#9E2B25')); p.position.set(x,.9,z); jz.add(p)}
+  const jr=new THREE.Mesh(new THREE.ConeGeometry(1.9,1.1,4),mat('#3B4044')); jr.rotation.y=Math.PI/4; jr.position.y=2.25; jz.add(jr);
+  const jb=new THREE.Mesh(new THREE.BoxGeometry(2.3,.12,2.3),mat('#2F6B45')); jb.position.y=1.75; jz.add(jb);
+  const brg=new THREE.Mesh(new THREE.TorusGeometry(2.1,.22,4,14,Math.PI),mat('#C9BFA6')); brg.rotation.y=Math.PI/2; brg.scale.set(1,.45,1); brg.position.set(13,1.3,-28.4); campus.add(brg);
+  // 오리배
+  const boats=[]; [[6,-22,'#F2C14E'],[22,-23,'#E86A5A'],[25,-11,'#F2C14E']].forEach(([x,z,c],k)=>{const b=new THREE.Group(); b.position.set(x,1.25,z); campus.add(b);
+    const hb=new THREE.Mesh(new THREE.BoxGeometry(1.6,.5,1),mat('#F4EFE2')); hb.position.y=.25; b.add(hb);
+    const hd=new THREE.Mesh(new THREE.SphereGeometry(.35,6,5),mat(c)); hd.position.set(.9,.75,0); b.add(hd);
+    const bk=new THREE.Mesh(new THREE.ConeGeometry(.12,.3,4),mat('#E8892B')); bk.rotation.z=-Math.PI/2; bk.position.set(1.3,.72,0); b.add(bk);
+    const cn=new THREE.Mesh(new THREE.BoxGeometry(1,.08,1.1),mat(c)); cn.position.set(-.2,1.1,0); b.add(cn);
+    b.userData={x,z,ph:k*2.1}; boats.push(b)});
+  // 새천년관: 긴 강의동 두 날개 + 가운데 유리 탑
+  const sc0=new THREE.Group(); sc0.position.set(14,1.6,-44); campus.add(sc0);
+  const stone=mat('#E2D9C6'), brick=mat('#B5795A'), glass=new THREE.MeshStandardMaterial({color:0x5D8C9C,metalness:.35,roughness:.25,flatShading:true,emissive:0xFFC870,emissiveIntensity:0});
+  for(const sd of[-1,1]){
+    const wing=new THREE.Mesh(new THREE.BoxGeometry(13,8,8),stone); wing.position.set(sd*10.5,4,0); sc0.add(wing);
+    const base=new THREE.Mesh(new THREE.BoxGeometry(13.2,1.6,8.2),brick); base.position.set(sd*10.5,.8,0); sc0.add(base);
+    for(let r=0;r<3;r++){const band=new THREE.Mesh(new THREE.BoxGeometry(12,.8,.1),glass); band.position.set(sd*10.5,2.6+r*2,4.05); sc0.add(band)}
+    const par=new THREE.Mesh(new THREE.BoxGeometry(13.2,.4,8.2),brick); par.position.set(sd*10.5,8.2,0); sc0.add(par);
+  }
+  const scTower=new THREE.Mesh(new THREE.BoxGeometry(8,15,9),stone); scTower.position.set(0,7.5,-.4); sc0.add(scTower);
+  const front=new THREE.Mesh(new THREE.CylinderGeometry(4.2,4.2,13,16,1,false,-Math.PI/2,Math.PI),glass); front.position.set(0,6.5,4); sc0.add(front);
+  for(let r=0;r<5;r++){const rb=new THREE.Mesh(new THREE.CylinderGeometry(4.25,4.25,.18,16,1,false,-Math.PI/2,Math.PI),stone); rb.position.set(0,1.8+r*2.6,4); sc0.add(rb)}
+  const tcap=new THREE.Mesh(new THREE.BoxGeometry(8.6,.6,9.6),brick); tcap.position.set(0,15.2,-.4); sc0.add(tcap);
+  const stairs=new THREE.Mesh(new THREE.BoxGeometry(9,.5,3),mat('#CFC6B2')); stairs.position.set(0,.25,9.2); sc0.add(stairs);
+  const ncv=document.createElement('canvas'); ncv.width=512; ncv.height=112; const nTex=new THREE.CanvasTexture(ncv); if(THREE.sRGBEncoding)nTex.encoding=THREE.sRGBEncoding;
+  const nSign=new THREE.Mesh(new THREE.PlaneGeometry(7.6,1.66),new THREE.MeshBasicMaterial({map:nTex})); nSign.position.set(0,14,4.11); sc0.add(nSign);
+  function drawNSign(){const g=ncv.getContext('2d'); g.fillStyle='#F4EFE2'; g.fillRect(0,0,512,112); g.strokeStyle='#00703E'; g.lineWidth=6; g.strokeRect(5,5,502,102);
+    g.textBaseline='middle'; g.textAlign='center'; g.fillStyle='#005128';
+    if(markReady){const mh=56,mw=mh*MARK_RATIO; g.drawImage(KU_MARK,26,(112-mh)/2,mw,mh); g.font='900 52px "Noto Serif KR", serif'; g.fillText('새천년관',320,60)}
+    else{g.font='900 52px "Noto Serif KR", serif'; g.fillText('새천년관',256,60)}
+    nTex.needsUpdate=true}
+  drawNSign();
+  // 앞마당 길과 잔디 나무
+  const plaza=new THREE.Mesh(new THREE.BoxGeometry(12,.08,12),pathM); plaza.position.set(14,1.64,-31.5); campus.add(plaza);
+  [[-4,-36],[32,-36],[-8,-48],[38,-48],[-6,-26],[36,-24]].forEach(([x,z],k)=>{const cr=new THREE.Mesh(new THREE.ConeGeometry(1.5,3.6,6),k%2?leaf:leaf2); cr.position.set(x,3.4,z); campus.add(cr)});
+  function campusTag(obj,offY,html){const d=document.createElement('div'); d.className='tag isle'; d.style.pointerEvents='none'; d.innerHTML=html; labelsEl.appendChild(d); tags.push({d,obj,offY})}
 
   /* ---- shipyard ---- */
   const yard=new THREE.Group(); yard.position.copy(yardPos); scene.add(yard);
@@ -743,9 +1065,89 @@ measure();
   const signC=document.createElement('canvas'); signC.width=512; signC.height=128;
   const signTex=new THREE.CanvasTexture(signC); if(THREE.sRGBEncoding)signTex.encoding=THREE.sRGBEncoding;
   const sign=new THREE.Mesh(new THREE.PlaneGeometry(9,2.25),new THREE.MeshBasicMaterial({map:signTex})); sign.position.set(20,5,-5.95); yard.add(sign);
-  function drawSign(){const g=signC.getContext('2d'); g.fillStyle='#005128'; g.fillRect(0,0,512,128); g.strokeStyle='#B8912F'; g.lineWidth=6; g.strokeRect(8,8,496,112);
-    g.fillStyle='#FFFFFF'; g.font='900 54px "Noto Serif KR", serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('KU 조선소',256,68); signTex.needsUpdate=true;}
+  function drawSign(){const g=signC.getContext('2d'); g.fillStyle='#F4EFE2'; g.fillRect(0,0,512,128); g.strokeStyle='#00703E'; g.lineWidth=8; g.strokeRect(6,6,500,116);
+    g.textBaseline='middle';
+    if(markReady){const mh=64,mw=mh*MARK_RATIO; g.drawImage(KU_MARK,40,(128-mh)/2,mw,mh); g.fillStyle='#005128'; g.font='900 58px "Noto Serif KR", serif'; g.textAlign='center'; g.fillText('조선소',330,68)}
+    else{g.fillStyle='#005128'; g.font='900 54px "Noto Serif KR", serif'; g.textAlign='center'; g.fillText('KU 조선소',256,68)}
+    signTex.needsUpdate=true;}
+  const yb=kuBoard(5,2.6,{border:'#B8912F'}); yb.position.set(8,15,-1.3); yard.add(yb);
+  const yp=new THREE.Mesh(new THREE.CylinderGeometry(.1,.12,7,6),steel); yp.position.set(-14,5,12); yard.add(yp);
+  const yf=kuBoard(3.4,1.9,{flag:true,border:'#00703E'}); yf.position.set(-14,7.6,12); yard.add(yf);
   drawSign();
+
+  /* ---- 건국대 방공 진지: 천궁 발사대 + KF-21 활주로 ---- */
+  const olive=mat('#5B6B4A'), oliveD=mat('#3F4B33'), tire=mat('#1E211D');
+  const lnc=new THREE.Group(); lnc.position.set(-9,3.1,9); lnc.rotation.y=.5; port.add(lnc);
+  const chs=new THREE.Mesh(new THREE.BoxGeometry(5.6,.6,2.1),oliveD); chs.position.y=.75; lnc.add(chs);
+  const cab=new THREE.Mesh(new THREE.BoxGeometry(1.5,1.5,2.1),olive); cab.position.set(2.2,1.75,0); lnc.add(cab);
+  const win=new THREE.Mesh(new THREE.BoxGeometry(.05,.6,1.7),mat('#24343C')); win.position.set(2.96,2,0); lnc.add(win);
+  for(const x of[-1.8,-.6,1.9])for(const z of[-1.05,1.05]){const wh=new THREE.Mesh(new THREE.CylinderGeometry(.45,.45,.35,10),tire); wh.rotation.x=Math.PI/2; wh.position.set(x,.45,z); lnc.add(wh)}
+  const erect=new THREE.Group(); erect.position.set(-2.6,1.1,0); erect.rotation.z=1.35; lnc.add(erect);   // 수직에 가깝게 세운 발사관
+  const pod=new THREE.Mesh(new THREE.BoxGeometry(4.2,1.7,1.9),olive); pod.position.x=2.1; erect.add(pod);
+  const tubes=[]; for(const y of[-.42,.42])for(const z of[-.46,.46]){const c=new THREE.Mesh(new THREE.CircleGeometry(.34,10),mat('#1A1D18')); c.rotation.y=Math.PI/2; c.position.set(4.22,y,z); erect.add(c); tubes.push(c)}
+  const muzzle=new THREE.Object3D(); muzzle.position.set(4.6,0,0); erect.add(muzzle);
+  const lncKU=kuBoard(1.6,.84,{bg:'#E9ECEA'}); lncKU.position.set(2.1,0,.96); erect.add(lncKU);
+  const rw=new THREE.Group(); rw.position.set(-6,0,21); port.add(rw);
+  const strip=new THREE.Mesh(new THREE.BoxGeometry(40,.5,5.4),mat('#4B5150')); strip.position.y=1.8; rw.add(strip);
+  for(let k=0;k<9;k++){const ln=new THREE.Mesh(new THREE.BoxGeometry(2.2,.04,.25),mat('#F4F1E8')); ln.position.set(-16+k*4,2.07,0); rw.add(ln)}
+  for(let k=0;k<6;k++)for(const z of[-2.3,2.3]){const p=new THREE.Mesh(new THREE.CylinderGeometry(.3,.3,3.6,6),mat('#5B4426')); p.position.set(-18+k*7.2,-.1,z); rw.add(p)}
+  const rwKU=kuBoard(4,2.1,{bg:'#4B5150'}); rwKU.rotation.x=-Math.PI/2; rwKU.position.set(-14.5,2.07,0); rwKU.rotation.z=-Math.PI/2; rw.add(rwKU);
+  const parked=makeJet(); parked.position.set(-13,3.1,0); rw.add(parked); parked.userData.ab.forEach(a=>a.visible=false);
+  const R0L=new THREE.Vector3(-13,3.1,0), R1L=new THREE.Vector3(17,3.1,0);
+  const hKit=strikeKit(scene);
+  let strikeStop=-1, strikeArmed=false;
+  function harborStrike(si){
+    if(reduce)return;
+    const k=Math.min(KF.length-1,Math.max(0,si-2)), L0=KF[k].l, P=k===0?L0.clone().add(new THREE.Vector3(10,26,-24)):L0.clone().add(new THREE.Vector3(-2,14,-14));
+    const S=new THREE.Vector3(); muzzle.getWorldPosition(S);
+    const fromCV=si>=2+1+DEPOTS.length, dj=deckJets[0];
+    const R0=fromCV?cv.localToWorld(new THREE.Vector3(-4,4.1,-3.2)):rw.localToWorld(R0L.clone()), R1=fromCV?cv.localToWorld(new THREE.Vector3(30,4.1,-3.2)):rw.localToWorld(R1L.clone());
+    if(fromCV)dj.visible=false; else parked.visible=false;
+    hKit.fire({S,R0,R1,P,from:P.clone().add(new THREE.Vector3(95,34,-80)),dur:6,cam:camera,
+      onBoom:e=>{const d=document.createElement('div'); d.className='tag hot'; d.innerHTML='<b>요격 성공</b><small>천궁 · KU KF-21</small>'; labelsEl.appendChild(d); const o=new THREE.Object3D(); o.position.copy(e.P); scene.add(o); e.tag={d,obj:o,offY:4}; tags.push(e.tag)},
+      onDone:e=>{if(e.tag){e.tag.d.remove(); tags.splice(tags.indexOf(e.tag),1); scene.remove(e.tag.obj)} if(!hKit.busy()){parked.visible=true;dj.visible=true}}});
+  }
+
+  /* ---- KU 조선소 협력 독: 국내 조선 빅3 (회사 로고 없이 이름 간판만) ---- */
+  const BIG3=[{n:'HD현대중공업',s:'울산 · LNG선 · 이지스 구축함',c:'#2E5A4E'},{n:'한화오션',s:'거제 옥포 · 잠수함 · LNG선',c:'#B4552F'},{n:'삼성중공업',s:'거제 · LNG선 · FLNG',c:'#2F5E8F'}];
+  const yGround2=new THREE.Mesh(new THREE.BoxGeometry(54,3,22),mat('#B9AC86')); yGround2.position.set(6,.3,-29); yard.add(yGround2);
+  const dockSigns=[];
+  BIG3.forEach((co,k)=>{
+    const dk=new THREE.Group(); dk.position.set(-12+k*18,1.8,-29); yard.add(dk);
+    const basin=new THREE.Mesh(new THREE.BoxGeometry(11,.2,18),mat('#7E8A8C')); basin.position.y=.02; dk.add(basin);
+    const lo=new THREE.Mesh(new THREE.BoxGeometry(4.6,2.2,14),mat('#9E3A2E')); lo.position.y=1.2; dk.add(lo);
+    const up=new THREE.Mesh(new THREE.BoxGeometry(5,2,14.6),mat('#6E7A80')); up.position.y=3.3; dk.add(up);
+    const bow=new THREE.Mesh(new THREE.ConeGeometry(2.5,3.5,4),mat('#6E7A80')); bow.rotation.x=Math.PI/2; bow.rotation.y=Math.PI/4; bow.scale.set(1,1,.8); bow.position.set(0,3.2,9); dk.add(bow);
+    const sup=new THREE.Mesh(new THREE.BoxGeometry(4,3,3),mat('#E8E6E0')); sup.position.set(0,5.8,-5); dk.add(sup);
+    const cm=mat(co.c);
+    for(const sd of[-1,1]){const leg=new THREE.Mesh(new THREE.BoxGeometry(.9,10,1.6),cm); leg.position.set(sd*7,5,2); dk.add(leg)}
+    const beam=new THREE.Mesh(new THREE.BoxGeometry(15.6,1.6,1.8),cm); beam.position.set(0,10.6,2); dk.add(beam);
+    const trolley=new THREE.Mesh(new THREE.BoxGeometry(2,1.2,2.2),mat('#E8E6E0')); trolley.position.set(-2+k*2,9.4,2); dk.add(trolley);
+    const c=document.createElement('canvas'); c.width=512; c.height=150; const tx=new THREE.CanvasTexture(c); if(THREE.sRGBEncoding)tx.encoding=THREE.sRGBEncoding;
+    const sg=new THREE.Mesh(new THREE.PlaneGeometry(9,2.64),new THREE.MeshBasicMaterial({map:tx})); sg.position.set(0,10.6,2.92); dk.add(sg);
+    const draw=()=>{const g=c.getContext('2d'); g.fillStyle='#F4EFE2'; g.fillRect(0,0,512,150); g.fillStyle=co.c; g.fillRect(0,0,512,14);
+      g.textAlign='center'; g.textBaseline='middle'; g.fillStyle='#10251C'; g.font='900 56px "Noto Sans KR", sans-serif'; g.fillText(co.n,256,66);
+      g.fillStyle='#4C5E55'; g.font='500 24px "Noto Sans KR", sans-serif'; g.fillText('No.'+(k+1)+' 독 · '+co.s,256,118); tx.needsUpdate=true};
+    draw(); dockSigns.push(draw);
+  });
+  /* ---- KU 항공모함: KF-21 탑재 ---- */
+  const cv=new THREE.Group(); cv.position.set(112,0,-40); scene.add(cv);
+  const cvs=new THREE.Shape(); [[-30,-5],[20,-5.6],[32,0],[20,5.6],[-30,5]].forEach(([x,z],i)=>i?cvs.lineTo(x,z):cvs.moveTo(x,z));
+  const cvg=new THREE.ExtrudeGeometry(cvs,{depth:6,bevelEnabled:false}); cvg.rotateX(-Math.PI/2);
+  const cvh=new THREE.Mesh(cvg,mat('#5E6970')); cvh.position.y=-3; cv.add(cvh);
+  const fd=new THREE.Mesh(new THREE.BoxGeometry(64,.6,15),mat('#3D4246')); fd.position.set(-1,3.2,0); cv.add(fd);
+  const ang=new THREE.Mesh(new THREE.BoxGeometry(34,.6,7),mat('#3D4246')); ang.position.set(-12,3.2,-7); ang.rotation.y=.16; cv.add(ang);
+  for(let k=0;k<10;k++){const ln=new THREE.Mesh(new THREE.BoxGeometry(2.4,.05,.3),mat('#F4F1E8')); ln.position.set(-28+k*6,3.53,0); cv.add(ln)}
+  const yl=new THREE.Mesh(new THREE.BoxGeometry(30,.05,.25),mat('#E3B23C')); yl.position.set(-12,3.53,-6); yl.rotation.y=.16; cv.add(yl);
+  const isle=new THREE.Mesh(new THREE.BoxGeometry(7,6,3.2),mat('#6E7A80')); isle.position.set(4,6.5,6.3); cv.add(isle);
+  const isle2=new THREE.Mesh(new THREE.BoxGeometry(4.6,2.6,2.8),mat('#6E7A80')); isle2.position.set(4.4,10.8,6.3); cv.add(isle2);
+  const cvMast=new THREE.Mesh(new THREE.CylinderGeometry(.15,.2,5,5),mat('#3B4A44')); cvMast.position.set(4.4,14.5,6.3); cv.add(cvMast);
+  const radar=new THREE.Mesh(new THREE.BoxGeometry(.3,1.2,3.4),mat('#C9CDD0')); radar.position.set(4.4,16.4,6.3); cv.add(radar);
+  const cvKU=kuBoard(11,5.7,{bg:'#3D4246'}); cvKU.rotation.x=-Math.PI/2; cvKU.position.set(-20,3.54,1.5); cv.add(cvKU);
+  const cvNo=document.createElement('canvas'); cvNo.width=256; cvNo.height=128; const cvT=new THREE.CanvasTexture(cvNo);
+  {const g=cvNo.getContext('2d'); g.clearRect(0,0,256,128); g.fillStyle='#F4F1E8'; g.font='900 92px "IBM Plex Mono", monospace'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('01',128,68)}
+  const cvNum=new THREE.Mesh(new THREE.PlaneGeometry(5,2.5),new THREE.MeshBasicMaterial({map:cvT,transparent:true})); cvNum.position.set(18,1.4,5.25); cv.add(cvNum);
+  const deckJets=[[16,-3.2,0],[6,-3.5,.2],[-6,4.5,-2.5],[-14,4.2,-2.4],[-24,-1,0]].map(([x,z,r])=>{const j=makeJet(); j.position.set(x,4.1,z); j.rotation.y=r; j.userData.ab.forEach(a=>a.visible=false); cv.add(j); return j});
 
   /* ---- clouds, gulls, stars ---- */
   const clouds=[]; const cloudMat=new THREE.MeshStandardMaterial({color:0xffffff,flatShading:true,roughness:1,transparent:true,opacity:.92});
@@ -832,6 +1234,18 @@ measure();
     m.rotation.x=-Math.PI/2;m.position.set(-28,-.6,0);return m}
   const FS=1, fleetG=SAILING.map(s=>{const g=makeShip(s);g.scale.setScalar(FS);g.add(wakeMesh());mS.add(g);return g});
   const FORM=[[0,0],[13,-6],[13,6],[26,0],[26,-12],[26,12]];
+  /* 지도: 기항지(분쟁 해역)마다 건국대에서 천궁 발사 + KF-21 출격 */
+  const mKit=strikeKit(mS,{puffN:220});
+  const hotU=HOTSPOTS.map(h=>{const p=proj(h.lon,h.lat); let best=0,bd=1e9; for(let i=0;i<=600;i++){const q=curve.getPointAt(i/600); const dd=(q.x-p.x)**2+(q.z-p.z)**2; if(dd<bd){bd=dd;best=i/600}} return best});
+  let prevLead=-1; const MDUR=7, MLEAD=.0075*.99*MDUR;
+  function mapStrike(k){
+    if(reduce)return;
+    const h=HOTSPOTS[k], P=proj(h.lon,h.lat,34), tg=curve.getTangentAt(hotU[k]);
+    const off=new THREE.Vector3(tg.z,0,-tg.x).multiplyScalar(-260); off.y=90;
+    mKit.fire({S:home.clone().setY(3),R0:home.clone().add(new THREE.Vector3(-6,1.8,5)),R1:home.clone().add(new THREE.Vector3(6,1.8,5)),P,from:P.clone().add(off),dur:MDUR,cam:mCam,
+      onBoom:e=>{e.tag=mTag(e.P.clone().setY(60),`<b>요격 성공 · ${esc(h.name)}</b><small>천궁 · KU KF-21</small>`,'hot',null,'a')},
+      onDone:e=>{if(e.tag){e.tag.d.remove(); mtags.splice(mtags.indexOf(e.tag),1)}}});
+  }
   // 지명
   const labelsEl=document.getElementById('labels');
   const mtags=[];
@@ -865,6 +1279,8 @@ measure();
     fleetG.forEach((g,i)=>{const [back0,lat0]=FORM[i%FORM.length], back=back0*SK, lat=lat0*SK; const u=Math.max(0,uLead-back/cLen);
       const p=curve.getPointAt(u), tg=curve.getTangentAt(u); g.position.set(p.x-tg.z*lat,.5+Math.sin(t*1.4+i)*.25,p.z+tg.x*lat);
       g.rotation.y=Math.atan2(-tg.z,tg.x); g.children[0].rotation.z=Math.sin(t*1.1+i)*.04; g.scale.setScalar(FS*SK*fade);});
+    if(prevLead>=0&&uLead>prevLead)hotU.forEach((u,k)=>{const tr=u-MLEAD; if(prevLead<tr&&uLead>=tr)mapStrike(k)});
+    prevLead=uLead; mKit.update(frameDt,t,SK*2.2);
     let A,B,f,fa,fb; if(pr<=1){A=MK[0];B=MK[1];f=ease(pr);fa=mapFar;fb=mapFarW}else{A=MK[1];B=MK[2];f=ease(pr-1);fa=mapFarW;fb=1}
     mP.copy(A.p).lerp(B.p,f); mL.copy(A.l).lerp(B.l,f);
     tmp.copy(mP).sub(mL).multiplyScalar(fa*(1-f)+fb*f); mP.copy(mL).add(tmp);
@@ -873,7 +1289,7 @@ measure();
     mCam.position.copy(mP); mCam.lookAt(mL); mR.render(mS,mCam);
     fleetTag.pos.copy(fleetG[0].position); fleetTag.pos.y+=22*SK;
   }
-  let mapFar=1, mapFarW=1, mapWide=0;
+  let mapFar=1, mapFarW=1, mapWide=0, frameDt=0;
 
   /* ---- theme ---- */
   let night=0;
@@ -887,6 +1303,7 @@ measure();
     stars.material.opacity=night?.85:0; beam.material.opacity=night?.18:0;
     lamp.material.emissiveIntensity=night?1.6:.4; winMat.emissiveIntensity=night?1.1:0;
     lanterns.forEach(l=>l.material.emissiveIntensity=night?2.2:.2);
+    lakeMat.color.set(night?'#1D4C4A':'#3C8C86'); lawn.color.set(night?'#2F5A3C':'#7DB57A'); glass.emissiveIntensity=night?.5:0;
     mS.fog.color.set(P.fog); mSeaMat.color.set(night?'#123E47':'#2E8590'); mSeaMat.specular.set(P.seaSpec);
     kMat.color.set(night?'#2F6A49':'#63A26F'); oMat.color.set(night?'#2A3A34':'#B3A987'); mtnMat.color.set(night?'#24503A':'#4F8A5B'); snowMat.color.set(night?'#9FB3A8':'#F3F5EF');
     gratMat.opacity=night?.12:.25; mHemi.color.set(P.hemiSky); mHemi.groundColor.set(P.hemiGround); mHemi.intensity=P.hemi; mSun.intensity=P.sun; mSun.color.set(P.sunColor);
@@ -894,7 +1311,7 @@ measure();
   }
   applyTheme(); mq.addEventListener?.('change',applyTheme);
   new MutationObserver(applyTheme).observe(root,{attributes:true,attributeFilter:['data-theme']});
-  document.fonts?.ready.then(()=>{ sails.forEach(drawSail); drawSign(); depots.forEach(D=>D.userData.drawSign()); });
+  document.fonts?.ready.then(()=>{ sails.forEach(drawSail); seoulFlags.forEach(drawSeoulFlag); drawSign(); depots.forEach(D=>D.userData.drawSign()); drawNSign(); dockSigns.forEach(f=>f()); });
 
   /* ---- camera keyframes ---- */
   const span=yardX+30;
@@ -913,6 +1330,9 @@ measure();
   depots.forEach(D=>addTag(D,10,`<i style="background:var(--food)"></i>보급소 <b>${esc(D.userData.ship.name)}</b>`,stopOf(D.userData.ship)));
   addTag(port,19,`<i style="background:var(--ku)"></i>모항 <b>건국대</b>`,HOME_STOP);
   addTag(yard,24,`<i style="background:var(--brass)"></i>건조 중 <b>${BUILDING.map(b=>b.hull).join('·')||'—'}</b>`,STOPS.length-1);
+  campusTag(lake,4,'<b>일감호</b>');
+  campusTag(sc0,18,'<b>새천년관</b>');
+  campusTag(cv,20,'<i style="background:#5E6970"></i>KU 항공모함 <b>KF-21 탑재</b>');
   const v3=new THREE.Vector3();
 
   /* ---- click on ships ---- */
@@ -942,7 +1362,7 @@ measure();
   document.addEventListener('visibilitychange',()=>{visible=!document.hidden; if(visible){last=performance.now();requestAnimationFrame(loop)}});
   function loop(now){
     if(!visible)return;
-    const dt=Math.min(.05,(now-last)/1000); last=now; t+=dt*(reduce?.35:1);
+    const dt=Math.min(.05,(now-last)/1000); last=now; t+=dt*(reduce?.35:1); frameDt=dt;
     // sea
     const a=seaPos.array; const ox=sea.position.x;
     for(let i=0;i<a.length;i+=3){a[i+1]=wave(seaBase[i]+ox,seaBase[i+2],t)}
@@ -953,6 +1373,13 @@ measure();
       g.children[0].rotation.z=(hf-hb)/L*.9; g.children[0].rotation.x=(hl-hr)*.06;});
     buoys.forEach((b,i)=>{b.position.y=wave(b.position.x,b.position.z,t)+.4;b.rotation.z=Math.sin(t*1.3+i)*.12});
     flags.forEach(f=>{const p=f.flag.geometry.attributes.position,a2=p.array;for(let i=0;i<a2.length;i+=3){const x=f.base[i];a2[i+2]=Math.sin(x*2.6-t*5+f.ph)*.22*x}p.needsUpdate=true});
+    crew.forEach(c=>{const u=c.userData;
+      if(u.kind==='rower'){u.armL.rotation.z=u.armR.rotation.z=Math.sin(t*2.2+u.ph)*.7}
+      else{c.rotation.y=u.ry+Math.sin(t*.5+u.ph)*.45; if(u.kind==='admiral')u.armR.rotation.z=1.9+.15*Math.sin(t*1.3+u.ph)}});
+    { const ns=Math.round(progress); if(ns>=2&&Math.abs(progress-ns)<.06&&ns!==strikeStop){strikeStop=ns; if(hKit.ev.length<2)harborStrike(ns)} if(ns<2)strikeStop=-1; }
+    hKit.update(dt,t,1);
+    boats.forEach(b=>{const u=b.userData; b.position.x=u.x+Math.sin(t*.15+u.ph)*1.6; b.position.y=1.25+Math.sin(t*1.2+u.ph)*.05; b.rotation.y=Math.cos(t*.15+u.ph)>0?0:Math.PI});
+    cv.position.y=wave(cv.position.x,cv.position.z,t)*.3; radar.rotation.y=t*1.4;
     jib.rotation.y=Math.sin(t*.25)*.7;
     beamPivot.rotation.y=t*.9;
     clouds.forEach(c=>{c.position.x+=dt*1.2; if(c.position.x>yardX+200)c.position.x=-180});
