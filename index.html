@@ -9,7 +9,7 @@
 <body>
 <title>앵커김군 선단</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="건국대학교 앵커사업단 업무 도구 선단 — 공문김군, 회의김군, 출장김군, 검수김군, 견적김군">
+<meta name="description" content="건국대학교 앵커사업단 업무 도구 선단 — 공문김군, 회의김군, 출장김군, 검수김군, 견적김군, 지출김군">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap">
@@ -309,7 +309,12 @@ const FLEET = [
     mission:'구매 견적서 검토·감사 점검',
     desc:'업체 견적서와 비교견적서를 읽어 공급가액·부가세·합계·견적일 비교표를 만들고, 건국대학교 구매계약업무요강(2025. 10. 1. 개정)에 비추어 계약 방법과 단일견적 사유를 점검합니다.',
     cargo:['견적서 이미지·PDF 판독과 업체별 비교표','계약 방법·단일견적 사유·일정·지급·부가세 환급 4대 점검','감사 체크리스트와 적발 사례 해설','보완 요청 메일 작성, 텍스트·JSON 저장'] },
-  { hull:'KU-06', name:'제6호선', product:'이름 미정', role:'건조 중', cls:'용골 거치', rig:'panok', status:'building',
+  { hull:'KU-06', name:'지출김군', product:'KU 지출 점검', role:'회계선', cls:'거북선', rig:'geobuk', status:'sailing',
+    color:'#C7841A', glyph:'支', url:'https://coolzet-ai.github.io/kuaccount/',
+    mission:'사업비 지출 점검·제출서류 확인',
+    desc:'견적서, 세금계산서, 검수조서, 통장 사본 같은 지출서류를 읽어 ANCHOR사업단 사업비 관리 지침과 구매계약·검수요강에 비추어 보완할 곳과 빠진 제출서류를 짚어 줍니다.',
+    cargo:['압축파일·이미지·PDF·화면 캡처로 지출서류 올리기','집행 항목·금액·지급 방식·결재 단계 입력','보완 사항과 점검 결과, 텍스트·JSON 저장','갖춘 서류를 체크하는 제출서류 현황'] },
+  { hull:'KU-07', name:'제7호선', product:'이름 미정', role:'건조 중', cls:'용골 거치', rig:'panok', status:'building',
     color:'#B8912F', glyph:'?', url:'',
     mission:'다음 업무 도구',
     desc:'새 도구가 배포되면 이 자리에서 진수합니다.', cargo:[] },
@@ -370,7 +375,7 @@ STOPS.forEach((st,i)=>{
       <div class="eyebrow">Korea → Black Sea</div>
       <h1>앵커김군 선단</h1>
       <p class="sub">건국대학교 앵커사업단 업무를 나르는 배들</p>
-      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하고, 구매 견적서를 살피는 배들입니다. 배가 지나는 항로는 녹색의 물결로 칠했고, 하늘에는 스타링크 위성 열차가 지나갑니다. 배는 이순신 함대의 판옥선과 거북선을 본떴고, 고물에는 서울 깃발을 달았습니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
+      <p class="long">화양동 모항을 떠난 선단이 대만 해협과 남중국해, 호르무즈 해협과 홍해를 지나 흑해까지 갑니다. 공문을 다듬고, 회의록을 쓰고, 출장보고서를 꾸리고, 납품 물품을 검수하고, 구매 견적서를 살피고, 사업비 지출을 점검하는 배들입니다. 배가 지나는 항로는 녹색의 물결로 칠했고, 하늘에는 스타링크 위성 열차가 지나갑니다. 배는 이순신 함대의 판옥선과 거북선을 본떴고, 고물에는 서울 깃발을 달았습니다. 업무 도구가 하나 생길 때마다 조선소에서 배를 한 척씩 건조해 선단에 더합니다.</p>
       <div class="stats">
         <div><b>${SAILING.length}척</b><span>취항</span></div>
         <div><b>${BUILDING.length}척</b><span>건조 중</span></div>
